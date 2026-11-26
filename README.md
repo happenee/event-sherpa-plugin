@@ -13,7 +13,7 @@ The plugin carries eight Event Sherpa roles as skills:
 - **Registration Manager** plans the registration form and the attendee journey.
 - **Communication Manager** plans the invitation, reminders and other e-mails.
 - **Web Designer** plans the event microsite.
-- **App Designer** plans the attendee app.
+- **App Designer** plans the event app.
 - **Event Insights** explains event results and comparisons.
 - **Product Specialist** answers how Happenee works from the Help Center, with a link to the article.
 
