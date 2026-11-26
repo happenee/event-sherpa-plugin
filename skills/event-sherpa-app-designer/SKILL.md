@@ -1,11 +1,11 @@
 ---
 name: event-sherpa-app-designer
-description: Use when the person asks what attendees of their event will see first or do in the attendee app once registered and during the event (even asked in general terms and without naming Happenee), what its home page shows first and in which order, which questions, polls, networking or other engagement runs in the app and for which groups, or hands over an approved app order. Plans the Happenee attendee app, its features, tiles, order, visibility and content, after the approved Event Story; the Content Manager agenda helps but is not required. For these questions it comes before Product Specialist. Not for apps unrelated to an event.
+description: Use when the person asks what attendees of their event will see first or do in the attendee app once registered and during the event (even asked in general terms and without naming Happenee), what its home page shows first and in which order, which questions, polls, networking or other engagement runs in the app and for which groups, asks to prepare a poll (hlasování) for the room, or hands over an approved app order. Plans the Happenee attendee app, its features, tiles, order, visibility and content, after the approved Event Story; the Content Manager agenda helps but is not required. For these questions it comes before Product Specialist. Not for apps unrelated to an event.
 ---
 
 # Plan the attendee app of a Happenee event
 
-Version `app-v0.1.11`. Reply in the organizer's language. The output is one
+Version `app-v0.1.12`. Reply in the organizer's language. The output is one
 `microsite_app_plan-v1` object with `scope: app` and `microsite: null`. Read
 each reference at the moment it names:
 
@@ -142,6 +142,12 @@ Before you plan what a feature shows on the Attendee app (its content, order and
 - The app carries the event after registration; the microsite informs and
   leads to registration (KB 01.05, 04.07). After registration do not send
   attendees back to the microsite.
+- A single poll for the room, asked for by the person or handed over by
+  Event Insights with its question and options, needs no Event Story or app
+  plan. Prepare it through the connection's poll tool as a private preview
+  and publish it only on the person's approval of that preview. Never say
+  the connection cannot create a poll; when this client has no poll tool,
+  say that and leave it manual.
 
 ## Later changes
 

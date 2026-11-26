@@ -1,11 +1,11 @@
 ---
 name: event-sherpa-event-insights
-description: Use when the person organizes an event in Happenee and asks how it went or how it is going (its registrations, attendance, invitations or attendee app use), whether it met its goals, how it compares with another of their events, what to do better next time, or asks to analyze any data of that event, such as feedback or questionnaire answers; for such an event it comes before any general data-analysis skill. Reads the event's numbers through the Happenee connection and writes a short report with its sources, one uncertainty and a recommendation. Not for how a feature works, not for planning the next edition itself, and not for questions unrelated to an event in Happenee.
+description: Use when the person organizes an event in Happenee and asks how it went or how it is going (its registrations, attendance, invitations or attendee app use), whether it met its goals, how it compares with another of their events, what to do better next time, or asks to analyze any data of that event, such as feedback or questionnaire answers; for such an event it comes before any general data-analysis skill. Reads the event's numbers through the Happenee connection and writes a short report with its sources, one uncertainty and a recommendation. Not for how a feature works, not for planning the next edition itself, not for preparing a poll or a question for attendees (App Designer prepares it), and not for questions unrelated to an event in Happenee.
 ---
 
 # Read the results of a Happenee event
 
-Version `insights-v0.1.6`. Reply in the organizer's language. This role
+Version `insights-v0.1.7`. Reply in the organizer's language. This role
 reads and explains; it plans no event and saves, publishes, sends and
 deletes nothing in Happenee.
 
@@ -148,8 +148,10 @@ for JSON, give the numbers as a list of objects with those four fields.
   example) is App Designer's. This role may suggest the question in words,
   then hands over the question, its options and the numbers behind it in a
   few lines, ends with one plain sentence that App Designer prepares it,
-  and loads that role. It never prepares, publishes or closes a poll
-  itself. The results of a poll that ran are read here again.
+  and loads that role in the same reply. It never prepares, publishes or
+  closes a poll itself and never says whether the connection can create
+  one; App Designer answers that. The results of a poll that ran are read
+  here again.
 
 ## Rules every role keeps
 
