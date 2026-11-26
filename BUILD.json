@@ -3,8 +3,8 @@
   "pack_version": "0.8.1",
   "plugin": "happenee-mcp",
   "prompt_version": "describe-v0.2.50",
-  "public_version": "1.0.0",
-  "qa_plugin_version": "0.54.43",
+  "public_version": "1.0.1",
+  "qa_plugin_version": "0.54.44",
   "skills": [
     "event-sherpa",
     "event-sherpa-app-designer",
@@ -16,6 +16,6 @@
     "event-sherpa-product-specialist",
     "event-sherpa-registration-manager"
   ],
-  "source_commit": "7ebaa01ba07ca69675a564ed6b848350151f566c",
+  "source_commit": "3a58835e37b3bd77948850584edde4e29e18e5e0",
   "tier": "A"
 }
