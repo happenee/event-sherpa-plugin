@@ -19,7 +19,7 @@ names only two session behaviours, a Lecture (`keynote`) and a Break (`break`),
 because that is what a plan before the event exists needs to say; the
 [handoff reference](handoff.md) maps them. A native edit works with the session
 types the event already has, as the server returns them, which can include
-booked sessions and time slots (`knowledge/articles/kb.<lang>.03.07.md`). So:
+booked sessions and time slots (`../event-sherpa-event-designer/knowledge/ondemand/kb.<lang>.03.07.md`). So:
 
 - When you apply a plan, a block that needs booking stays open or blocked in
   the plan, as the handoff reference says; never widen the plan to the native

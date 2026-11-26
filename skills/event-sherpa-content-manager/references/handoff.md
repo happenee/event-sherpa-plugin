@@ -23,7 +23,7 @@ times: date not confirmed", "create sponsors and link them to sessions").
 ## Session type of every block
 
 Every block carries `admin_type`. A Happenee session type has one of four base
-behaviours (Lecture, Workshop, Time slots, Break; `knowledge/articles/kb.<lang>.03.07.md`),
+behaviours (Lecture, Workshop, Time slots, Break; `../event-sherpa-event-designer/knowledge/ondemand/kb.<lang>.03.07.md`),
 and the event_content-v1 plan represents only `keynote` (Lecture) and `break`.
 Native capabilities are read from the server; they do not widen this plan schema. A targeted change to an agenda the event already has works with its native types ([native agenda craft](native-program.md)). A Lecture shows its
 description to attendees; a break shows only its title, place and tags, plus an

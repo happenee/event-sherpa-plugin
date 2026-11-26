@@ -14,7 +14,7 @@ each one holds.
   before answering; the personal link opens the Event microsite address too
   (KB 04.06), so a used entry needs the microsite in the story. The link
   carries the invited contact, so the identity would be lost with the public
-  link (`knowledge/articles/kb.<lang>.04.06.md`).
+  link (`../event-sherpa-event-designer/knowledge/ondemand/kb.<lang>.04.06.md`).
 - `registered` has registered and comes back from the confirmation e-mail,
   the microsite or the Attendee app.
 
