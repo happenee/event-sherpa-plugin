@@ -5,7 +5,7 @@ Read this before you draw the journey and the settings of a registration plan.
 ## Who the event is for, from the story
 
 Choosing the registration type is four decisions, in this order
-(`knowledge/articles/kb.<lang>.01.04.md`): who may register (public link,
+(`../event-sherpa-event-designer/knowledge/ondemand/kb.<lang>.01.04.md`): who may register (public link,
 personal link, company domain, nominations), what the event needs from the
 attendee (contact details only, or more), whether a person approves each
 registration, and whether entry is paid. Answer each from the story before
@@ -79,6 +79,6 @@ registration. Do not choose again what the story chose.
   `admin_archetype` with a `decisions` entry. The plan does not convert to a
   preview while it is `null`, because the admin would quietly use conference
   rules.
-- `knowledge/articles/kb.<lang>.01.06.md` says which modules fit which kind
+- `../event-sherpa-event-designer/knowledge/ondemand/kb.<lang>.01.06.md` says which modules fit which kind
   of event and `02.09` how nominations work; read them when the story's
   composition raises the question.

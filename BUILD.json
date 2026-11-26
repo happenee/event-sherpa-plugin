@@ -3,7 +3,7 @@
   "pack_version": "0.8.1",
   "plugin": "happenee-mcp",
   "prompt_version": "describe-v0.2.50",
-  "public_version": "1.0.2",
+  "public_version": "1.0.3",
   "qa_plugin_version": "0.54.47",
   "skills": [
     "event-sherpa",

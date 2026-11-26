@@ -41,19 +41,21 @@ what the story lacks in `story_changes`.
 
 ## Product knowledge
 
+The knowledge base articles, the archetype articles and the shared references on the connection, feedback and readiness are the same for every role and sit in the Event Designer skill folder next to this one, `../event-sherpa-event-designer/`. Their paths in this file are relative to this skill's folder. This role's own index is `knowledge/INDEX.md` in this skill's folder; Event Designer's folder has none.
+
 Compose writes about a real product, so it works from the Happenee knowledge
 base for organizers in `knowledge/`. [The index](knowledge/INDEX.md) says
 which file serves which part; read only what the task touches.
 
-- Before the agenda, read the archetype article in `knowledge/archetypes/`
+- Before the agenda, read the archetype article in `../event-sherpa-event-designer/knowledge/archetypes/`
   that matches the story's archetype, in the organizer's language, and
-  `articles/kb.<lang>.03.06.md` and `03.07.md` on how an agenda and its
+  `../event-sherpa-event-designer/knowledge/ondemand/kb.<lang>.03.06.md` and `03.07.md` on how an agenda and its
   session types work.
 - Read the article behind every feature a block relies on (workshop sign-up,
   time slots, networking, questions and polls, My agenda, groups and
   visibility) before proposing it. A block never relies on behaviour the
   article does not describe.
-- Before `people[]`, read `articles/kb.<lang>.03.03.md` (speakers). Before
+- Before `people[]`, read `../event-sherpa-event-designer/knowledge/ondemand/kb.<lang>.03.03.md` (speakers). Before
   `partners[]`, read `03.12` (sponsors) and `03.13` (exhibitors); the import
   articles `03.19`, `03.22` and `03.23` describe the manual routes.
 - Check every text that mentions a Happenee capability against
@@ -311,7 +313,7 @@ steps stay manual and what is blocked.
 - **Before any change in Happenee.** Before the first call that prepares,
   saves, confirms, publishes, sends or deletes anything, and before you show
   a preview of such a change, read
-  [changes through the connection](references/connection-write.md) in this
+  [changes through the connection](../event-sherpa-event-designer/references/connection-write.md) in this
   skill's folder: how a change is made, the rule for a date or venue that
   has not changed yet, targeted changes, images, e-mail drafts, creating an
   event and access. The approval rule of the section "Rules every role
@@ -330,7 +332,7 @@ steps stay manual and what is blocked.
     Event Story.
   - A request that names one thing the event has and what it should say or
     be is a targeted change, which needs no Event Story
-    (`references/connection-write.md` says how to make it).
+    (`../event-sherpa-event-designer/references/connection-write.md` says how to make it).
   - One follow-up e-mail for an event Happenee already holds (a reminder
     to registered attendees, a notice of a saved change, a thank-you after
     the event) is not design work either: Communication Manager writes that
@@ -382,7 +384,7 @@ steps stay manual and what is blocked.
   missing access and a call that failed: one failed call does not make the
   whole connection unavailable. Before you run a readiness check, report
   its result or say whether an event is ready, read
-  [readiness check](references/readiness.md) in this skill's folder: the
+  [readiness check](../event-sherpa-event-designer/references/readiness.md) in the Event Designer folder: the
   check is the only verdict, reported in its three groups in words, with
   each problem's fix, who makes it and whether it needs approval. Never
   show a status code (READY, WARNING, UNKNOWN); say "not verified" or its
@@ -537,4 +539,4 @@ prepare the Happenee preview. Keep the supplied wording in `message`. Set
 `presentation_language` to `cs` or `en` for the conversation and generate
 an opaque retry key. Link an event only when requested. Show the review link or
 card returned by the tool. The person approves sending there. A declined
-host confirmation ends this attempt. For privacy, missing text and retries, use [feedback to Happenee](references/feedback.md).
+host confirmation ends this attempt. For privacy, missing text and retries, use [feedback to Happenee](../event-sherpa-event-designer/references/feedback.md).

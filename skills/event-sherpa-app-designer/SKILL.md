@@ -34,17 +34,19 @@ leave `microsite` null.
 
 ## Product knowledge
 
+The knowledge base articles, the archetype articles and the shared references on the connection, feedback and readiness are the same for every role and sit in the Event Designer skill folder next to this one, `../event-sherpa-event-designer/`. Their paths in this file are relative to this skill's folder. This role's own index is `knowledge/INDEX.md` in this skill's folder; Event Designer's folder has none.
+
 The plan describes a real product, so work from the Happenee knowledge base
 for organizers in `knowledge/`. [The index](knowledge/INDEX.md) says which
 file serves which part; read only what the task touches.
 
-- Before the app, read `articles/kb.<lang>.03.14.md` (app home page), and
+- Before the app, read `../event-sherpa-event-designer/knowledge/ondemand/kb.<lang>.03.14.md` (app home page), and
   `01.05`, `01.06` and `04.07` on how the app and the microsite work
   together. In `01.05` the part between the `SUPERSEDED` markers is no
   active recommendation: the app is recommended for every event (`01.06`).
 - Read the article behind every feature you plan (the table in
   [the feature vocabulary](references/features.md) names it) and the
-  archetype article in `knowledge/archetypes/` matching the story's
+  archetype article in `../event-sherpa-event-designer/knowledge/archetypes/` matching the story's
   archetype. Plan only behaviour the article describes; where the input asks
   for more, say so in `open_items` with kind `verify` and do not promise it.
 - Check every text that mentions a Happenee capability against
@@ -296,7 +298,7 @@ steps stay manual and what is blocked.
 - **Before any change in Happenee.** Before the first call that prepares,
   saves, confirms, publishes, sends or deletes anything, and before you show
   a preview of such a change, read
-  [changes through the connection](references/connection-write.md) in this
+  [changes through the connection](../event-sherpa-event-designer/references/connection-write.md) in this
   skill's folder: how a change is made, the rule for a date or venue that
   has not changed yet, targeted changes, images, e-mail drafts, creating an
   event and access. The approval rule of the section "Rules every role
@@ -315,7 +317,7 @@ steps stay manual and what is blocked.
     Event Story.
   - A request that names one thing the event has and what it should say or
     be is a targeted change, which needs no Event Story
-    (`references/connection-write.md` says how to make it).
+    (`../event-sherpa-event-designer/references/connection-write.md` says how to make it).
   - One follow-up e-mail for an event Happenee already holds (a reminder
     to registered attendees, a notice of a saved change, a thank-you after
     the event) is not design work either: Communication Manager writes that
@@ -367,7 +369,7 @@ steps stay manual and what is blocked.
   missing access and a call that failed: one failed call does not make the
   whole connection unavailable. Before you run a readiness check, report
   its result or say whether an event is ready, read
-  [readiness check](references/readiness.md) in this skill's folder: the
+  [readiness check](../event-sherpa-event-designer/references/readiness.md) in the Event Designer folder: the
   check is the only verdict, reported in its three groups in words, with
   each problem's fix, who makes it and whether it needs approval. Never
   show a status code (READY, WARNING, UNKNOWN); say "not verified" or its
@@ -522,4 +524,4 @@ prepare the Happenee preview. Keep the supplied wording in `message`. Set
 `presentation_language` to `cs` or `en` for the conversation and generate
 an opaque retry key. Link an event only when requested. Show the review link or
 card returned by the tool. The person approves sending there. A declined
-host confirmation ends this attempt. For privacy, missing text and retries, use [feedback to Happenee](references/feedback.md).
+host confirmation ends this attempt. For privacy, missing text and retries, use [feedback to Happenee](../event-sherpa-event-designer/references/feedback.md).

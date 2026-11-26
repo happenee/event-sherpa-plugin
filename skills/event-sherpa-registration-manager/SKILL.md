@@ -61,6 +61,8 @@ reminder's subject) is not a plan and needs no story.
 
 ## Product knowledge
 
+The knowledge base articles, the archetype articles and the shared references on the connection, feedback and readiness are the same for every role and sit in the Event Designer skill folder next to this one, `../event-sherpa-event-designer/`. Their paths in this file are relative to this skill's folder. This role's own index is `knowledge/INDEX.md` in this skill's folder; Event Designer's folder has none.
+
 Register works from the Happenee knowledge base for organizers in
 `knowledge/`, the same customer-safe pack Describe reads.
 [The index](knowledge/INDEX.md) says which file serves which part; read only
@@ -68,9 +70,9 @@ what the task touches, and cite an article by its source id when the organizer
 asks why.
 
 - Before any question, read the Registration form article
-  `knowledge/articles/kb.<lang>.02.05.md`, and `02.06` before any branching.
+  `../event-sherpa-event-designer/knowledge/ondemand/kb.<lang>.02.05.md`, and `02.06` before any branching.
 - Before the journey and the settings, read `01.04` (choosing the
-  registration type), then `02.04` and the article in `knowledge/archetypes/`
+  registration type), then `02.04` and the article in `../event-sherpa-event-designer/knowledge/archetypes/`
   that matches the story's archetype, in the organizer's language.
 - Before the journey, read `04.06` (personal and public link), `04.07` (the
   way from the e-mail to the Attendee app), `04.02` (what the Confirmation
@@ -118,7 +120,7 @@ you chose, [compose](references/questions-compose.md) or
 ## Who the event is for, from the story
 
 Choosing the registration type is four decisions, in this order
-(`knowledge/articles/kb.<lang>.01.04.md`): who may register (public link,
+(`../event-sherpa-event-designer/knowledge/ondemand/kb.<lang>.01.04.md`): who may register (public link,
 personal link, company domain, nominations), what the event needs from the
 attendee (contact details only, or more), whether a person approves each
 registration, and whether entry is paid. Answer each from the story before the
@@ -331,7 +333,7 @@ steps stay manual and what is blocked.
 - **Before any change in Happenee.** Before the first call that prepares,
   saves, confirms, publishes, sends or deletes anything, and before you show
   a preview of such a change, read
-  [changes through the connection](references/connection-write.md) in this
+  [changes through the connection](../event-sherpa-event-designer/references/connection-write.md) in this
   skill's folder: how a change is made, the rule for a date or venue that
   has not changed yet, targeted changes, images, e-mail drafts, creating an
   event and access. The approval rule of the section "Rules every role
@@ -350,7 +352,7 @@ steps stay manual and what is blocked.
     Event Story.
   - A request that names one thing the event has and what it should say or
     be is a targeted change, which needs no Event Story
-    (`references/connection-write.md` says how to make it).
+    (`../event-sherpa-event-designer/references/connection-write.md` says how to make it).
   - One follow-up e-mail for an event Happenee already holds (a reminder
     to registered attendees, a notice of a saved change, a thank-you after
     the event) is not design work either: Communication Manager writes that
@@ -402,7 +404,7 @@ steps stay manual and what is blocked.
   missing access and a call that failed: one failed call does not make the
   whole connection unavailable. Before you run a readiness check, report
   its result or say whether an event is ready, read
-  [readiness check](references/readiness.md) in this skill's folder: the
+  [readiness check](../event-sherpa-event-designer/references/readiness.md) in the Event Designer folder: the
   check is the only verdict, reported in its three groups in words, with
   each problem's fix, who makes it and whether it needs approval. Never
   show a status code (READY, WARNING, UNKNOWN); say "not verified" or its
@@ -557,4 +559,4 @@ prepare the Happenee preview. Keep the supplied wording in `message`. Set
 `presentation_language` to `cs` or `en` for the conversation and generate
 an opaque retry key. Link an event only when requested. Show the review link or
 card returned by the tool. The person approves sending there. A declined
-host confirmation ends this attempt. For privacy, missing text and retries, use [feedback to Happenee](references/feedback.md).
+host confirmation ends this attempt. For privacy, missing text and retries, use [feedback to Happenee](../event-sherpa-event-designer/references/feedback.md).
