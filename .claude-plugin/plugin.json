@@ -1,0 +1,32 @@
+{
+  "author": {
+    "name": "Happenee"
+  },
+  "description": "Event Sherpa plans events in Happenee with eight roles: Event Designer (Event Story), Content Manager (agenda, speakers, texts), Registration Manager, Communication Manager (e-mails), Web Designer (microsite), App Designer (attendee app), Event Insights (event results) and Product Specialist (Help Center). It sees only events you allow and saves private drafts you ask for. Publishing, opening registration, sending and deleting wait for your approval of the preview. AI drafts texts; check them.",
+  "homepage": "https://en.happenee.com/",
+  "keywords": [
+    "happenee",
+    "events",
+    "event story",
+    "describe",
+    "setup proposal",
+    "compose",
+    "agenda",
+    "register",
+    "registration",
+    "communicate",
+    "e-mail",
+    "microsite",
+    "attendee app"
+  ],
+  "license": "LicenseRef-Happenee-Proprietary",
+  "mcpServers": {
+    "happenee": {
+      "type": "http",
+      "url": "https://admin2.happenee.com/mcp/event-insights"
+    }
+  },
+  "name": "happenee",
+  "repository": "https://github.com/happenee/event-sherpa-plugin",
+  "version": "1.0.0"
+}

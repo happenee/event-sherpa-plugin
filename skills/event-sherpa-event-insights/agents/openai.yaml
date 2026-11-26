@@ -1,0 +1,7 @@
+interface:
+  display_name: "Event Sherpa: Event Insights"
+  short_description: "Understand how an event went and what to do better next time"
+  icon_small: "./assets/icon.png"
+  icon_large: "./assets/icon.png"
+  brand_color: "#1840DA"
+  default_prompt: "Use $event-sherpa-event-insights to read how our event went and suggest what to do better next time."

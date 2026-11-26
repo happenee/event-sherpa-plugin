@@ -1,0 +1,7 @@
+interface:
+  display_name: "Event Sherpa: Event Designer"
+  short_description: "Plan new and existing events with Event Sherpa"
+  icon_small: "./assets/icon.png"
+  icon_large: "./assets/icon.png"
+  brand_color: "#1840DA"
+  default_prompt: "Use $event-sherpa-event-designer to plan a new event and create it in Happenee, write its Event Story on request, or review and plan an existing event from current evidence."

@@ -1,0 +1,1168 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "registration_plan-v1",
+  "description": "Registration settings, contact fields, form and attendee journey of one event, linked to its approved Event Story and Compose output. Every text carries its authority.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "enum": [
+        "registration_plan-v1"
+      ]
+    },
+    "output": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Id and revision of this plan, the same shape in every Event Sherpa skill. output_id is assigned by whoever stores the plan and copied from the previous revision, null for a new or unstored plan; revision is 1 for a new plan, else the previous revision plus 1; supersedes_revision is the revision this one replaces (null for the first); change_id names the change that made this revision (null for the first); bindings are written by the MCP after a verified write and copied unchanged, never written by the skill.",
+      "required": [
+        "output_id",
+        "revision",
+        "supersedes_revision",
+        "change_id",
+        "bindings"
+      ],
+      "properties": {
+        "output_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "revision": {
+          "type": "integer"
+        },
+        "supersedes_revision": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "change_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "bindings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "ref",
+              "saved_ref",
+              "operation_id",
+              "verified_at"
+            ],
+            "properties": {
+              "ref": {
+                "type": "string",
+                "description": "id of the item in this plan, for example b03"
+              },
+              "saved_ref": {
+                "type": "string",
+                "description": "the saved object in the event, for example session:812"
+              },
+              "operation_id": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "verified_at": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "story_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "The approved Event Story. story_id and story_version always come from the story's presentation; blueprint_id and revision only when the story is stored, both null for a story made in the conversation.",
+      "properties": {
+        "story_id": {
+          "type": "string"
+        },
+        "story_version": {
+          "type": "integer"
+        },
+        "blueprint_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "revision": {
+          "type": [
+            "string",
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "story_id",
+        "story_version",
+        "blueprint_id",
+        "revision"
+      ]
+    },
+    "story_basis": {
+      "type": "object",
+      "description": "What the skill took from the approved Event Story, the same shape in every Event Sherpa skill. source is stored when the input held the complete saved story record with its blueprint_id, excerpt for any story without a blueprint_id (one written in this conversation, a conversation-only copy) and for part of a saved story with its capabilities, reference when only its id was; archetypes in the story's order (the first is the main one); modules are the eight Happenee modules in fixed order with the story's selection, absent when the story lists no such capability, unknown for a story given by reference.",
+      "additionalProperties": false,
+      "required": [
+        "source",
+        "archetypes",
+        "modules"
+      ],
+      "properties": {
+        "source": {
+          "enum": [
+            "stored",
+            "excerpt",
+            "reference"
+          ]
+        },
+        "archetypes": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "internal_corporate",
+              "external_client",
+              "conference",
+              "expo",
+              "incentive",
+              "hybrid",
+              "online_webinar",
+              "test_drive"
+            ]
+          }
+        },
+        "modules": {
+          "type": "array",
+          "minItems": 8,
+          "maxItems": 8,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "module",
+              "selection"
+            ],
+            "properties": {
+              "module": {
+                "enum": [
+                  "tickets",
+                  "registration-form",
+                  "event-microsite",
+                  "invitation-email",
+                  "confirmation-email",
+                  "email-campaigns",
+                  "on-site-check-in",
+                  "attendee-app"
+                ]
+              },
+              "selection": {
+                "enum": [
+                  "recommended",
+                  "conditional",
+                  "declined",
+                  "not_selected",
+                  "absent",
+                  "unknown"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "content_ref": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "description": "The Compose output this plan reads; its story must be the plan's story.",
+      "properties": {
+        "schema_version": {
+          "type": "string",
+          "enum": [
+            "event_content-v1"
+          ]
+        },
+        "output_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "output.output_id of the output this plan reads; null when it is not stored."
+        },
+        "revision": {
+          "type": "integer",
+          "description": "output.revision of the output this plan reads; 1 for an output written before revisions."
+        },
+        "story_id": {
+          "type": "string"
+        },
+        "story_version": {
+          "type": "integer"
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "compose",
+            "adopt"
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "output_id",
+        "revision",
+        "story_id",
+        "story_version",
+        "mode"
+      ]
+    },
+    "language": {
+      "type": "string",
+      "enum": [
+        "cs",
+        "en"
+      ]
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "compose",
+        "adopt"
+      ]
+    },
+    "admin_archetype": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "conference",
+        "internal",
+        "networking",
+        null
+      ]
+    },
+    "journey": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "entry": {
+            "type": "string",
+            "enum": [
+              "public_visitor",
+              "personal_invitee",
+              "registered"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "used",
+              "unused",
+              "open"
+            ],
+            "description": "used: the event has this way in; unused: it does not, and reason says which story fact or decision rules it out; open: undecided, named by an open item of kind journey."
+          },
+          "reason": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Why the entry is used, unused or open, with the story fact, brief source or decision it rests on; required for unused and open."
+          },
+          "arrives_via": {
+            "type": "string"
+          },
+          "identity": {
+            "type": "string",
+            "enum": [
+              "anonymous",
+              "invited_contact",
+              "registered_contact"
+            ]
+          },
+          "next_step": {
+            "type": "string"
+          },
+          "shown_on": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "tickets",
+                "registration-form",
+                "event-microsite",
+                "invitation-email",
+                "confirmation-email",
+                "email-campaigns",
+                "on-site-check-in",
+                "attendee-app"
+              ]
+            }
+          },
+          "manual_remainder": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "verify": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "entry",
+          "status",
+          "reason",
+          "arrives_via",
+          "identity",
+          "next_step",
+          "shown_on",
+          "manual_remainder",
+          "verify"
+        ]
+      }
+    },
+    "settings": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "registration_deadline": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "confirmed",
+                "open",
+                "keep"
+              ]
+            },
+            "value": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Local YYYY-MM-DD HH:mm:ss in Europe/Prague, or null for no deadline; only with status confirmed. Any confirmed deadline opens registration at once."
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "status",
+            "value",
+            "source"
+          ]
+        },
+        "capacity": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "confirmed",
+                "open",
+                "keep"
+              ]
+            },
+            "value": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "description": "0 means unlimited; counts confirmed and approved attendees, not companions."
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "status",
+            "value",
+            "source"
+          ]
+        },
+        "approval_required": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "confirmed",
+                "open",
+                "keep"
+              ]
+            },
+            "value": {
+              "type": [
+                "boolean",
+                "null"
+              ],
+              "description": "Whether the organizer approves each registration."
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "status",
+            "value",
+            "source"
+          ]
+        }
+      },
+      "required": [
+        "registration_deadline",
+        "capacity",
+        "approval_required"
+      ]
+    },
+    "access_settings": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Settings of KB 02.04 that follow from who the event is for and that the MCP write cannot set: a person sets them in Nastavení události. confirmed: stated by the organizer or the brief, with source; proposal: derived from the story with reason and kb_ref, set only after a person confirms it; open: undecided, named by an open item of kind settings; keep: left as the event has it (the admin default).",
+      "properties": {
+        "registration_restriction": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Omezení registrace: none (Bez omezení, default), assigned_contacts (Pouze pro přiřazené kontakty), allowed_domains or blocked_domains (domain lists set by customer support).",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "confirmed",
+                "proposal",
+                "open",
+                "keep"
+              ]
+            },
+            "value": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "none",
+                "assigned_contacts",
+                "allowed_domains",
+                "blocked_domains",
+                null
+              ]
+            },
+            "reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "kb_ref": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "status",
+            "value",
+            "reason",
+            "kb_ref",
+            "source"
+          ]
+        },
+        "app_visibility": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Viditelnost události v účastnické aplikaci: assigned_contacts (default) or all_contacts (everyone in the workspace sees the event).",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "confirmed",
+                "proposal",
+                "open",
+                "keep"
+              ]
+            },
+            "value": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "assigned_contacts",
+                "all_contacts",
+                null
+              ]
+            },
+            "reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "kb_ref": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "status",
+            "value",
+            "reason",
+            "kb_ref",
+            "source"
+          ]
+        },
+        "app_access": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Přístup do události v účastnické aplikaci: after_form (default) or without_form (a click gives access and sets Zúčastním se; no form data).",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "confirmed",
+                "proposal",
+                "open",
+                "keep"
+              ]
+            },
+            "value": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "after_form",
+                "without_form",
+                null
+              ]
+            },
+            "reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "kb_ref": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "status",
+            "value",
+            "reason",
+            "kb_ref",
+            "source"
+          ]
+        }
+      },
+      "required": [
+        "registration_restriction",
+        "app_visibility",
+        "app_access"
+      ]
+    },
+    "contact_fields": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "field": {
+            "type": "string",
+            "enum": [
+              "email",
+              "first_name",
+              "last_name",
+              "phone",
+              "job_title",
+              "company",
+              "company_id",
+              "country",
+              "twitter",
+              "linkedin",
+              "custom"
+            ]
+          },
+          "custom_label": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "required",
+              "optional",
+              "hidden"
+            ]
+          },
+          "reason": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "source": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "field",
+          "custom_label",
+          "state",
+          "reason",
+          "source"
+        ]
+      }
+    },
+    "form": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "questions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "ref": {
+                "type": "string",
+                "description": "new:<token> or the exact q:ID read from the event; stable across revisions."
+              },
+              "code": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "type": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "enum": [
+                  "text",
+                  "singleSelect",
+                  "multiSelect",
+                  null
+                ],
+                "description": "null when the type is not confirmed; the admin cannot change a type after the write."
+              },
+              "label_ref": {
+                "type": "string"
+              },
+              "description_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "state": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "enum": [
+                  "required",
+                  "optional",
+                  null
+                ]
+              },
+              "allow_other": {
+                "type": "boolean"
+              },
+              "min_selections": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "max_selections": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "options": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "ref": {
+                      "type": "string",
+                      "description": "new:<token> or the exact o:ID read from the event; stable across revisions."
+                    },
+                    "label_ref": {
+                      "type": "string"
+                    },
+                    "shows": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "description": "Question ref this option reveals."
+                      }
+                    }
+                  },
+                  "required": [
+                    "ref",
+                    "label_ref",
+                    "shows"
+                  ]
+                }
+              },
+              "used_for": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "use": {
+                      "type": "string",
+                      "enum": [
+                        "programme",
+                        "segment",
+                        "branch",
+                        "follow_up",
+                        "ops"
+                      ]
+                    },
+                    "blocks": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "description": "Compose block_id; required for use programme."
+                      }
+                    },
+                    "note": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "use",
+                    "blocks",
+                    "note"
+                  ]
+                }
+              },
+              "source": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "ref",
+              "code",
+              "type",
+              "label_ref",
+              "description_ref",
+              "state",
+              "allow_other",
+              "min_selections",
+              "max_selections",
+              "options",
+              "used_for",
+              "source"
+            ]
+          }
+        }
+      },
+      "required": [
+        "questions"
+      ]
+    },
+    "content_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "content_id": {
+            "type": "string",
+            "description": "Stable across revisions; equal to the Compose content_id when the text comes from Compose."
+          },
+          "surface": {
+            "type": "string",
+            "enum": [
+              "concept",
+              "programme",
+              "microsite",
+              "registration",
+              "email",
+              "app"
+            ]
+          },
+          "slot": {
+            "type": "string"
+          },
+          "text": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "null when the text is still open and may not be written."
+          },
+          "authority": {
+            "type": "string",
+            "enum": [
+              "verbatim",
+              "proposal",
+              "editable"
+            ]
+          },
+          "edit_scope": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "source": {
+            "type": "string"
+          },
+          "depends_on": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "What the text states and must follow when it changes: fact:<key> for a story fact (the key of a confirmed fact or unknown, for example fact:venue), setting:<key> for a Register setting (for example setting:registration_deadline), or the id of an item of this plan or an earlier plan of the chain, alone or with the field the text states (b03.start, p02). Empty when the text states none of these."
+          },
+          "approved_in": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "content_id",
+          "surface",
+          "slot",
+          "text",
+          "authority",
+          "edit_scope",
+          "source",
+          "depends_on",
+          "approved_in"
+        ]
+      }
+    },
+    "organization_rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "knowledge_id": {
+            "type": "string"
+          },
+          "revision": {
+            "type": [
+              "string",
+              "integer"
+            ]
+          },
+          "rule": {
+            "type": "string"
+          },
+          "binding": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "knowledge_id",
+          "revision",
+          "rule",
+          "binding"
+        ]
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "scope": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "as_of_and_source": {
+            "type": "string"
+          },
+          "revisit_trigger": {
+            "type": "string"
+          },
+          "supersedes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "scope",
+          "reason",
+          "as_of_and_source",
+          "revisit_trigger",
+          "supersedes"
+        ]
+      }
+    },
+    "story_changes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "A proposed change to the approved Event Story, for a person to approve; approved changes go into the next story version through Describe.",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "change": {
+            "type": "string",
+            "enum": [
+              "add",
+              "drop",
+              "change"
+            ]
+          },
+          "module": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "tickets",
+              "registration-form",
+              "event-microsite",
+              "invitation-email",
+              "confirmation-email",
+              "email-campaigns",
+              "on-site-check-in",
+              "attendee-app",
+              null
+            ],
+            "description": "The module the change adds, drops or changes, by its key; null when the change concerns a content or engagement feature or a setting."
+          },
+          "subject": {
+            "type": "string",
+            "description": "The module, feature or setting of the story, in product terms."
+          },
+          "reason": {
+            "type": "string"
+          },
+          "knowledge_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Knowledge base source ids that support the change; at least one."
+          },
+          "refs": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string"
+            },
+            "description": "Setting names, access setting names, journey entries or question refs of this plan that depend on the change; null or empty when none."
+          }
+        },
+        "required": [
+          "id",
+          "change",
+          "module",
+          "subject",
+          "reason",
+          "knowledge_ids",
+          "refs"
+        ]
+      }
+    },
+    "deferred": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "item": {
+            "type": "string"
+          },
+          "decided_in": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "item",
+          "decided_in",
+          "reason"
+        ]
+      }
+    },
+    "open_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "item": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "settings",
+              "question",
+              "copy",
+              "journey",
+              "ops"
+            ]
+          },
+          "refs": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string"
+            },
+            "description": "Setting names (also of access_settings), question refs or journey entries the open item holds up; null or empty when none."
+          }
+        },
+        "required": [
+          "item",
+          "kind",
+          "refs"
+        ]
+      }
+    },
+    "blocked_operations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "operation": {
+            "type": "string"
+          },
+          "area": {
+            "type": "string",
+            "enum": [
+              "settings",
+              "access_settings",
+              "contact_fields",
+              "form",
+              "info_text",
+              "consent",
+              "confirmation",
+              "groups",
+              "journey",
+              "other"
+            ]
+          },
+          "blocked_by": {
+            "type": "string"
+          },
+          "manual_step": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "operation",
+          "area",
+          "blocked_by",
+          "manual_step"
+        ]
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "output",
+    "story_ref",
+    "story_basis",
+    "content_ref",
+    "language",
+    "mode",
+    "admin_archetype",
+    "journey",
+    "settings",
+    "access_settings",
+    "contact_fields",
+    "form",
+    "content_items",
+    "organization_rules",
+    "decisions",
+    "story_changes",
+    "deferred",
+    "open_items",
+    "blocked_operations"
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "author": {
+    "name": "Happenee"
+  },
+  "description": "Event Sherpa plans events in Happenee with eight roles: Event Designer (Event Story), Content Manager (agenda, speakers, texts), Registration Manager, Communication Manager (e-mails), Web Designer (microsite), App Designer (attendee app), Event Insights (event results) and Product Specialist (Help Center). It sees only events you allow and saves private drafts you ask for. Publishing, opening registration, sending and deleting wait for your approval of the preview. AI drafts texts; check them.",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "capabilities": [
+          "Interactive",
+          "Read",
+          "Write"
+        ],
+        "category": "Productivity",
+        "composerIcon": "./assets/icon.png",
+        "defaultPrompt": [
+          "We're planning a conference for 300 people in Prague in March. Help me plan it and set it up in Happenee.",
+          "Draft the agenda and speaker line-up for our conference and add it to the event in Happenee.",
+          "Is our next event ready to open registration? Check the setup in Happenee and tell me what to fix."
+        ],
+        "developerName": "Happenee",
+        "displayName": "Happenee",
+        "logo": "./assets/icon.png",
+        "longDescription": "Event Sherpa connects your conversation to your events in Happenee and plans them with you, from the first brief to an event set up in Happenee.\n\nDescribe the event you are planning. Event Sherpa asks what it needs, drafts the plan with you and sets it up in Happenee. It sees only the events your own Happenee account can access, saves private drafts within the scope you requested and tells you what was saved. Publishing, opening registration, sending or scheduling e-mails, deleting and immediately visible changes require your explicit approval of their concrete content and effects. Buttons your chat adds under a reply on its own, such as creating a spreadsheet or opening a mailbox window, are not steps in Happenee and change nothing there.\n\nKey capabilities:\n- Event Designer: turn your brief into an Event Story, the attendee's path through the event and what to set up for it\n- Content Manager: draft the agenda, speakers, partners and texts\n- Registration Manager: plan the registration form and the attendee journey\n- Communication Manager: plan the invitation, reminders and other e-mails\n- Web Designer: plan the event microsite\n- App Designer: plan the attendee app\n- Event Insights: understand event results and comparisons\n- Product Specialist: answer how Happenee works from the Help Center, with a link to the article\n- Create the event in Happenee and fill in private drafts, with explicit approval before consequential changes\n\nWhether you are planning a new conference or the next edition of a familiar one, Event Sherpa keeps the plan and the setup in one conversation.\n\nEvent Sherpa is an AI assistant. Texts and proposals are prepared by AI, so check them before you save or approve them.",
+        "privacyPolicyURL": "https://en.happenee.com/about/privacy-policy",
+        "shortDescription": "Plan events with Event Sherpa",
+        "termsOfServiceURL": "https://en.happenee.com/about/terms-of-use",
+        "websiteURL": "https://en.happenee.com/"
+      }
+    }
+  },
+  "homepage": "https://en.happenee.com/",
+  "keywords": [
+    "happenee",
+    "events",
+    "event story",
+    "describe",
+    "setup proposal",
+    "compose",
+    "agenda",
+    "register",
+    "registration",
+    "communicate",
+    "e-mail",
+    "microsite",
+    "attendee app"
+  ],
+  "license": "LicenseRef-Happenee-Proprietary",
+  "name": "happenee",
+  "repository": "https://github.com/happenee/event-sherpa-plugin",
+  "skills": "./skills/",
+  "version": "1.0.0"
+}

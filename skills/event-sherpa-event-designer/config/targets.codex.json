@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "surfaces": {
+    "codex": {
+      "cs": [
+        {
+          "availability": "live",
+          "href": "https://cz.happenee.com/naplanovat-demo",
+          "kind": "book_review",
+          "label": "Naplánovat demo",
+          "sublabel": "30minutové review této Event Story",
+          "target_key": "book_review"
+        },
+        {
+          "availability": "internal",
+          "href": null,
+          "kind": "send_story",
+          "label": "Poslat Event Story",
+          "sublabel": "Story zkopírujete z konverzace a pošlete, komu potřebujete",
+          "target_key": "send_story"
+        },
+        {
+          "availability": "human",
+          "href": null,
+          "kind": "continue_with_expert",
+          "label": "Pokračovat s expertem",
+          "sublabel": "Konzultace s člověkem z Happenee, domluví se přes Naplánovat demo",
+          "target_key": "continue_with_expert"
+        },
+        {
+          "availability": "internal",
+          "href": null,
+          "kind": "clarify_brief",
+          "label": "Doplnit brief",
+          "sublabel": "Vrátit se a upřesnit odpovědi v této konverzaci",
+          "target_key": "clarify_brief"
+        },
+        {
+          "availability": "internal",
+          "href": null,
+          "kind": "ask",
+          "label": "Zeptat se na Event Story",
+          "sublabel": "Doplňující otázka k vygenerované Event Story",
+          "target_key": "ask"
+        },
+        {
+          "availability": "human",
+          "href": null,
+          "kind": "portfolio_review",
+          "label": "Portfolio review",
+          "sublabel": "Konzultace nad více eventy najednou s člověkem z Happenee",
+          "target_key": "portfolio_review"
+        },
+        {
+          "availability": "human",
+          "href": null,
+          "kind": "security_review",
+          "label": "Security review",
+          "sublabel": "Bezpečnostní a compliance dotazy řeší jen člověk z Happenee",
+          "target_key": "security_review"
+        }
+      ],
+      "en": [
+        {
+          "availability": "live",
+          "href": "https://en.happenee.com/book-a-demo",
+          "kind": "book_review",
+          "label": "Book a demo",
+          "sublabel": "30-minute review of this Event Story",
+          "target_key": "book_review"
+        },
+        {
+          "availability": "internal",
+          "href": null,
+          "kind": "send_story",
+          "label": "Send Event Story",
+          "sublabel": "Copy the story from this conversation and send it to whoever needs it",
+          "target_key": "send_story"
+        },
+        {
+          "availability": "human",
+          "href": null,
+          "kind": "continue_with_expert",
+          "label": "Continue with an expert",
+          "sublabel": "A consultation with a person from Happenee, arranged through Book a demo",
+          "target_key": "continue_with_expert"
+        },
+        {
+          "availability": "internal",
+          "href": null,
+          "kind": "clarify_brief",
+          "label": "Clarify the brief",
+          "sublabel": "Go back and refine the answers in this conversation",
+          "target_key": "clarify_brief"
+        },
+        {
+          "availability": "internal",
+          "href": null,
+          "kind": "ask",
+          "label": "Ask about this Event Story",
+          "sublabel": "Follow-up question on the generated Event Story",
+          "target_key": "ask"
+        },
+        {
+          "availability": "human",
+          "href": null,
+          "kind": "portfolio_review",
+          "label": "Portfolio review",
+          "sublabel": "A Happenee human reviews multiple events together",
+          "target_key": "portfolio_review"
+        },
+        {
+          "availability": "human",
+          "href": null,
+          "kind": "security_review",
+          "label": "Security review",
+          "sublabel": "Security and compliance questions go to a Happenee human only",
+          "target_key": "security_review"
+        }
+      ],
+      "ondemand_cap_bytes": 120000,
+      "simulated": {
+        "booking": true,
+        "email_verification": true,
+        "generation": false,
+        "upload": true,
+        "voice": true
+      }
+    }
+  }
+}

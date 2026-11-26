@@ -1,0 +1,7 @@
+interface:
+  display_name: "Event Sherpa"
+  short_description: "Start here: Event Sherpa picks the right role"
+  icon_small: "./assets/icon.png"
+  icon_large: "./assets/icon.png"
+  brand_color: "#1840DA"
+  default_prompt: "Use $event-sherpa to pick the right Event Sherpa role for my request about our event."

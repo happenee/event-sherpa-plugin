@@ -1,0 +1,260 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "output_revision-v1",
+  "description": "A revision of one Event Sherpa plan: the change, the operations that make plan revision N+1 out of revision N, the conflicts a person decides and the items of other plans the change touches. tools/apply_revision.py composes the whole plan from it.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "skill",
+    "target",
+    "change",
+    "ops",
+    "conflicts",
+    "impacts"
+  ],
+  "properties": {
+    "schema_version": {
+      "enum": [
+        "output_revision-v1"
+      ]
+    },
+    "skill": {
+      "enum": [
+        "compose",
+        "register",
+        "communicate",
+        "microsite-app",
+        "app"
+      ]
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "The plan revision this revision changes: output.output_id and output.revision of the current plan.",
+      "required": [
+        "output_id",
+        "revision"
+      ],
+      "properties": {
+        "output_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "revision": {
+          "type": "integer"
+        }
+      }
+    },
+    "change": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "change_id",
+        "request",
+        "source"
+      ],
+      "properties": {
+        "change_id": {
+          "type": "string",
+          "description": "the id the caller gave the change, else chg- with the next revision number"
+        },
+        "request": {
+          "type": "string",
+          "description": "the change in the organizer's words, or the impact it comes from"
+        },
+        "source": {
+          "type": "string",
+          "description": "turn, tool result or skill the change came from"
+        }
+      }
+    },
+    "ops": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "op",
+          "item",
+          "fields",
+          "value",
+          "after"
+        ],
+        "properties": {
+          "op": {
+            "enum": [
+              "set",
+              "add",
+              "remove",
+              "move",
+              "replace"
+            ]
+          },
+          "item": {
+            "type": "string",
+            "description": "collection/id for an item addressed by id (programme/b03), else the dotted path of a section (concept, open_items, settings)."
+          },
+          "fields": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "description": "set: the fields that change, each with its whole new value; null for the other ops."
+          },
+          "value": {
+            "description": "add: the whole new item, its id equal to the one in item; replace: the whole new value of the section; null for the other ops."
+          },
+          "after": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "add: the id the new item goes after, null to append it at the end; move: the id the item goes after, null for the start of the collection; null for the other ops."
+          }
+        }
+      }
+    },
+    "conflicts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "conflict_id",
+          "refs",
+          "reason",
+          "options",
+          "held_ops"
+        ],
+        "properties": {
+          "conflict_id": {
+            "type": "string"
+          },
+          "refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "reason": {
+            "type": "string"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 2
+          },
+          "held_ops": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "op",
+                "item",
+                "fields",
+                "value",
+                "after"
+              ],
+              "properties": {
+                "op": {
+                  "enum": [
+                    "set",
+                    "add",
+                    "remove",
+                    "move",
+                    "replace"
+                  ]
+                },
+                "item": {
+                  "type": "string",
+                  "description": "collection/id for an item addressed by id (programme/b03), else the dotted path of a section (concept, open_items, settings)."
+                },
+                "fields": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "description": "set: the fields that change, each with its whole new value; null for the other ops."
+                },
+                "value": {
+                  "description": "add: the whole new item, its id equal to the one in item; replace: the whole new value of the section; null for the other ops."
+                },
+                "after": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "description": "add: the id the new item goes after, null to append it at the end; move: the id the item goes after, null for the start of the collection; null for the other ops."
+                }
+              }
+            },
+            "description": "operations that wait until a person picks an option; not applied"
+          }
+        }
+      }
+    },
+    "impacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "output",
+          "ref",
+          "kind",
+          "action",
+          "via",
+          "reason"
+        ],
+        "properties": {
+          "output": {
+            "enum": [
+              "event_content-v1",
+              "registration_plan-v1",
+              "communication_plan-v1",
+              "microsite_app_plan-v1"
+            ]
+          },
+          "scope": {
+            "enum": [
+              "app",
+              "microsite",
+              null
+            ],
+            "description": "whose plan the item is in when two skills share the contract: for microsite_app_plan-v1 microsite (Web Designer) or app (App Designer), whose plans can reuse the same ids; null or left out for the other plans"
+          },
+          "ref": {
+            "type": "string",
+            "description": "id of the touched item in that plan"
+          },
+          "kind": {
+            "enum": [
+              "fact",
+              "text",
+              "structure"
+            ]
+          },
+          "action": {
+            "enum": [
+              "update",
+              "check",
+              "none"
+            ]
+          },
+          "via": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

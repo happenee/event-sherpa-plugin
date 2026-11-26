@@ -1,0 +1,1202 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "microsite_app_plan-v1",
+  "description": "How the Event microsite or the Attendee app of one event looks and what it holds, built on an approved Event Story and the Compose output. Web Designer writes the microsite plan (scope microsite), App Designer the app plan (scope app); both share this contract, and a feature instance shared by the two keeps its instance_id. A plan for a person to set up in the admin; nothing is written by it.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "enum": [
+        "microsite_app_plan-v1"
+      ]
+    },
+    "output": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Id and revision of this plan, the same shape in every Event Sherpa skill. output_id is assigned by whoever stores the plan and copied from the previous revision, null for a new or unstored plan; revision is 1 for a new plan, else the previous revision plus 1; supersedes_revision is the revision this one replaces (null for the first); change_id names the change that made this revision (null for the first); bindings are written by the MCP after a verified write and copied unchanged, never written by the skill.",
+      "required": [
+        "output_id",
+        "revision",
+        "supersedes_revision",
+        "change_id",
+        "bindings"
+      ],
+      "properties": {
+        "output_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "revision": {
+          "type": "integer"
+        },
+        "supersedes_revision": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "change_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "bindings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "ref",
+              "saved_ref",
+              "operation_id",
+              "verified_at"
+            ],
+            "properties": {
+              "ref": {
+                "type": "string",
+                "description": "id of the item in this plan, for example b03"
+              },
+              "saved_ref": {
+                "type": "string",
+                "description": "the saved object in the event, for example session:812"
+              },
+              "operation_id": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "verified_at": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "scope": {
+      "type": "string",
+      "enum": [
+        "microsite",
+        "app",
+        "both"
+      ],
+      "description": "Which part of the event this plan designs: microsite (Web Designer; app is null) or app (App Designer; microsite is null). both is only for plans written before the two skills split (stored runs); a skill never writes it."
+    },
+    "story_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "The approved Event Story this plan builds on. story_id and story_version come from the story's presentation; blueprint_id and revision only when the story is stored, both null for a story made in the conversation.",
+      "properties": {
+        "story_id": {
+          "type": "string"
+        },
+        "story_version": {
+          "type": "integer"
+        },
+        "blueprint_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "revision": {
+          "type": [
+            "string",
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "story_id",
+        "story_version",
+        "blueprint_id",
+        "revision"
+      ]
+    },
+    "story_basis": {
+      "type": "object",
+      "description": "What the skill took from the approved Event Story, the same shape in every Event Sherpa skill. source is stored when the input held the complete saved story record with its blueprint_id, excerpt for any story without a blueprint_id (one written in this conversation, a conversation-only copy) and for part of a saved story with its capabilities, reference when only its id was; archetypes in the story's order (the first is the main one); modules are the eight Happenee modules in fixed order with the story's selection, absent when the story lists no such capability, unknown for a story given by reference.",
+      "additionalProperties": false,
+      "required": [
+        "source",
+        "archetypes",
+        "modules"
+      ],
+      "properties": {
+        "source": {
+          "enum": [
+            "stored",
+            "excerpt",
+            "reference"
+          ]
+        },
+        "archetypes": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "internal_corporate",
+              "external_client",
+              "conference",
+              "expo",
+              "incentive",
+              "hybrid",
+              "online_webinar",
+              "test_drive"
+            ]
+          }
+        },
+        "modules": {
+          "type": "array",
+          "minItems": 8,
+          "maxItems": 8,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "module",
+              "selection"
+            ],
+            "properties": {
+              "module": {
+                "enum": [
+                  "tickets",
+                  "registration-form",
+                  "event-microsite",
+                  "invitation-email",
+                  "confirmation-email",
+                  "email-campaigns",
+                  "on-site-check-in",
+                  "attendee-app"
+                ]
+              },
+              "selection": {
+                "enum": [
+                  "recommended",
+                  "conditional",
+                  "declined",
+                  "not_selected",
+                  "absent",
+                  "unknown"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "content_ref": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "description": "The Compose output (event_content-v1) this plan reads, or null when there is none; its story must be the plan's story. Its blocks and texts are referenced by block_id and content_id.",
+      "properties": {
+        "schema_version": {
+          "type": "string",
+          "enum": [
+            "event_content-v1"
+          ]
+        },
+        "output_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "output.output_id of the output this plan reads; null when it is not stored."
+        },
+        "revision": {
+          "type": "integer",
+          "description": "output.revision of the output this plan reads; 1 for an output written before revisions."
+        },
+        "story_id": {
+          "type": "string"
+        },
+        "story_version": {
+          "type": "integer"
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "compose",
+            "adopt"
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "output_id",
+        "revision",
+        "story_id",
+        "story_version",
+        "mode"
+      ]
+    },
+    "registration_ref": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "description": "The Register output this plan builds on: its schema_version, the story_id and story_version of its story_ref (the plan's story) and its mode; null when there is none. Which ways into the event exist comes from its journey.",
+      "properties": {
+        "schema_version": {
+          "type": "string",
+          "enum": [
+            "registration_plan-v1"
+          ]
+        },
+        "output_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "output.output_id of the output this plan reads; null when it is not stored."
+        },
+        "revision": {
+          "type": "integer",
+          "description": "output.revision of the output this plan reads; 1 for an output written before revisions."
+        },
+        "story_id": {
+          "type": "string"
+        },
+        "story_version": {
+          "type": "integer"
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "compose",
+            "adopt"
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "output_id",
+        "revision",
+        "story_id",
+        "story_version",
+        "mode"
+      ]
+    },
+    "language": {
+      "type": "string",
+      "enum": [
+        "cs",
+        "en"
+      ]
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "compose",
+        "adopt"
+      ]
+    },
+    "organization_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "used",
+            "unavailable",
+            "not_requested"
+          ],
+          "description": "used when get_organization_context returned records that apply; unavailable when the tool or its scope is missing; not_requested outside the admin."
+        },
+        "records": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "knowledge_id": {
+                "type": "string"
+              },
+              "revision": {
+                "type": "integer"
+              },
+              "content_hash": {
+                "type": "string"
+              },
+              "category": {
+                "type": "string",
+                "enum": [
+                  "preference",
+                  "rule",
+                  "lesson"
+                ]
+              },
+              "applied_to": {
+                "type": "string",
+                "description": "What in the plan this record shaped."
+              }
+            },
+            "required": [
+              "knowledge_id",
+              "revision",
+              "content_hash",
+              "category",
+              "applied_to"
+            ]
+          }
+        }
+      },
+      "required": [
+        "status",
+        "records"
+      ]
+    },
+    "feature_content": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "instance_id": {
+            "type": "string",
+            "description": "Stable across revisions, for example fc.venue or fc.custom.sherpa."
+          },
+          "feature_key": {
+            "type": "string",
+            "enum": [
+              "agenda",
+              "speakers",
+              "sponsors",
+              "exhibitors",
+              "venue",
+              "contact",
+              "custom-content",
+              "qr-ticket",
+              "guest-qr-code",
+              "notifications",
+              "polls",
+              "questions",
+              "survey",
+              "attendees-feature",
+              "registration-information",
+              "online-module",
+              "my-agenda",
+              "leaderboard"
+            ],
+            "description": "Content or engagement feature, from references/features.md."
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "content",
+              "engagement"
+            ]
+          },
+          "name_ref": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "content_id of the name the instance is renamed to; null keeps the default name."
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "field": {
+                  "type": "string",
+                  "description": "Field of the feature, for example venue.address, contact.email, custom.detail."
+                },
+                "content_ref": {
+                  "type": "string",
+                  "description": "content_id holding the value; its text is null while the value is missing."
+                }
+              },
+              "required": [
+                "field",
+                "content_ref"
+              ]
+            }
+          },
+          "settings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "setting": {
+                  "type": "string",
+                  "description": "The admin label of the setting, for example 'Zapnout soukromé zprávy'."
+                },
+                "value": {
+                  "type": "string"
+                },
+                "source": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "setting",
+                "value",
+                "source"
+              ]
+            }
+          },
+          "visibility": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "audience": {
+                "type": "string",
+                "enum": [
+                  "all",
+                  "groups"
+                ]
+              },
+              "groups": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Group names exactly as the input gives them; empty for all."
+              }
+            },
+            "required": [
+              "audience",
+              "groups"
+            ]
+          },
+          "compose_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Plain id strings, never objects: block_id, content_id, person_id (Speakers) or partner_id (Sponsors, Exhibitors) in the Compose output that fill this instance; a person or partner only when confirmed."
+          },
+          "source": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "instance_id",
+          "feature_key",
+          "kind",
+          "name_ref",
+          "fields",
+          "settings",
+          "visibility",
+          "compose_refs",
+          "source"
+        ]
+      }
+    },
+    "microsite": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "use": {
+          "type": "string",
+          "enum": [
+            "full",
+            "registration_only",
+            "not_used"
+          ],
+          "description": "full microsite, the microsite only as the registration layer behind the organizer's own web, or none."
+        },
+        "sections": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "section_id": {
+                "type": "string",
+                "description": "Stable across revisions, for example ms03. The array order is the order on the microsite home page."
+              },
+              "name": {
+                "type": "string",
+                "description": "Internal name of the section, as the brief or the plan calls it. Not public copy."
+              },
+              "carrier": {
+                "type": "string",
+                "enum": [
+                  "header_image",
+                  "intro_text",
+                  "feature",
+                  "registration_button"
+                ],
+                "description": "Where the section lives in the admin: the header image (Nastavení grafiky), the intro text (Microsite události), one content feature tab, or the registration button position."
+              },
+              "instance_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "instance_id in feature_content for carrier feature, else null."
+              },
+              "text_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "content_ids of the texts in this section (intro text parts); empty for a feature tab, whose texts sit on the instance."
+              },
+              "display": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "enum": [
+                  "preview",
+                  "all",
+                  null
+                ],
+                "description": "For an agenda or speakers tab: preview (first 6 sessions or 3 rows of speakers) or all; null when not set or not applicable."
+              },
+              "registration_position": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "enum": [
+                  "top",
+                  "middle",
+                  "bottom",
+                  "auto",
+                  null
+                ],
+                "description": "For carrier registration_button only."
+              },
+              "settings": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "setting": {
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "string"
+                    },
+                    "source": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "setting",
+                    "value",
+                    "source"
+                  ]
+                },
+                "description": "Other settings of this tab under its admin label, for example quick filters or 'Proklik na detail session'."
+              },
+              "reason": {
+                "type": "string"
+              },
+              "source": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "section_id",
+              "name",
+              "carrier",
+              "instance_ref",
+              "text_refs",
+              "display",
+              "registration_position",
+              "settings",
+              "reason",
+              "source"
+            ]
+          }
+        },
+        "thank_you_ref": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "content_id of the text shown after the registration form is sent, or null."
+        }
+      },
+      "required": [
+        "use",
+        "sections",
+        "thank_you_ref"
+      ],
+      "description": "The Event microsite; null in an app plan."
+    },
+    "app": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "use": {
+          "type": "string",
+          "enum": [
+            "used",
+            "not_used"
+          ]
+        },
+        "entry_points": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "route": {
+                "type": "string",
+                "enum": [
+                  "magic_link",
+                  "pin",
+                  "event_qr",
+                  "web_app_link",
+                  "store_download"
+                ],
+                "description": "How an attendee gets into the app (KB 04.07, 03.14)."
+              },
+              "where": {
+                "type": "string",
+                "description": "Where the attendee meets it, for example the confirmation e-mail. The text there belongs to the skill of the module that carries it."
+              }
+            },
+            "required": [
+              "route",
+              "where"
+            ]
+          }
+        },
+        "features": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "entry_id": {
+                "type": "string",
+                "description": "Stable across revisions, for example app03 or app.questions.b06."
+              },
+              "feature_key": {
+                "type": "string",
+                "enum": [
+                  "agenda",
+                  "speakers",
+                  "sponsors",
+                  "exhibitors",
+                  "venue",
+                  "contact",
+                  "custom-content",
+                  "qr-ticket",
+                  "guest-qr-code",
+                  "notifications",
+                  "polls",
+                  "questions",
+                  "survey",
+                  "attendees-feature",
+                  "registration-information",
+                  "online-module",
+                  "my-agenda",
+                  "leaderboard",
+                  "session-rating",
+                  "anonymous-questions"
+                ],
+                "description": "Feature shown in the attendee app."
+              },
+              "placement": {
+                "type": "string",
+                "enum": [
+                  "home",
+                  "session"
+                ],
+                "description": "home: a tile on the attendee app home screen, in array order; session: engagement on the detail of the blocks listed."
+              },
+              "instance_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "instance_id in feature_content; required for placement home, null for placement session."
+              },
+              "tile": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "enum": [
+                  "text",
+                  "image",
+                  null
+                ],
+                "description": "How a home tile looks; null for placement session."
+              },
+              "blocks": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Compose block_ids the feature serves."
+              },
+              "engagement_level": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "enum": [
+                  "listen",
+                  "react",
+                  "share",
+                  null
+                ],
+                "description": "The Compose engagement level the feature carries, or null."
+              },
+              "reason": {
+                "type": "string"
+              },
+              "kb_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "story_status": {
+                "type": "string",
+                "enum": [
+                  "selected",
+                  "pending_change",
+                  "unverified",
+                  "not_tracked"
+                ],
+                "description": "selected when the story recommends the capability or makes it conditional; pending_change when it rests on a proposed story change that lists this entry in refs; unverified when the story's capabilities were not in the input; not_tracked for features the story's capability list does not carry (My agenda follows Agenda, Session rating)."
+              },
+              "source": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "entry_id",
+              "feature_key",
+              "placement",
+              "instance_ref",
+              "tile",
+              "blocks",
+              "engagement_level",
+              "reason",
+              "kb_refs",
+              "story_status",
+              "source"
+            ]
+          }
+        }
+      },
+      "required": [
+        "use",
+        "entry_points",
+        "features"
+      ],
+      "description": "The Attendee app; null in a microsite plan."
+    },
+    "story_changes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "A proposed change to the approved Event Story, for a person to approve; approved changes go into the next story version through Describe. Same shape in every Sherpa skill.",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "change": {
+            "type": "string",
+            "enum": [
+              "add",
+              "drop",
+              "change"
+            ]
+          },
+          "module": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "tickets",
+              "registration-form",
+              "event-microsite",
+              "invitation-email",
+              "confirmation-email",
+              "email-campaigns",
+              "on-site-check-in",
+              "attendee-app",
+              null
+            ],
+            "description": "The module the change adds, drops or changes, by its key; null when the change concerns a content or engagement feature or a setting."
+          },
+          "subject": {
+            "type": "string",
+            "description": "The module, feature or setting of the story, in product terms."
+          },
+          "reason": {
+            "type": "string",
+            "description": "Why the event needs the change and what it changes for the attendee."
+          },
+          "knowledge_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Knowledge base source ids that support the change; at least one, only articles the skill carries."
+          },
+          "refs": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string"
+            },
+            "description": "entry_id, instance_id or section_id of this plan that depend on the change; null or empty when none."
+          }
+        },
+        "required": [
+          "id",
+          "change",
+          "module",
+          "subject",
+          "reason",
+          "knowledge_ids",
+          "refs"
+        ]
+      }
+    },
+    "content_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "content_id": {
+            "type": "string",
+            "description": "Stable across revisions; equal to the Compose content_id when the text comes from Compose."
+          },
+          "surface": {
+            "type": "string",
+            "enum": [
+              "concept",
+              "programme",
+              "microsite",
+              "registration",
+              "email",
+              "app",
+              "feature"
+            ],
+            "description": "feature for the content of a content feature, shown wherever the feature is published; the other surfaces as in Compose."
+          },
+          "slot": {
+            "type": "string",
+            "description": "Use name for a feature name referenced by name_ref."
+          },
+          "text": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The exact text, or null for a value or copy that is still missing."
+          },
+          "authority": {
+            "type": "string",
+            "enum": [
+              "verbatim",
+              "proposal",
+              "editable"
+            ]
+          },
+          "edit_scope": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "source": {
+            "type": "string"
+          },
+          "depends_on": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "What the text states and must follow when it changes: fact:<key> for a story fact (the key of a confirmed fact or unknown, for example fact:venue), setting:<key> for a Register setting (for example setting:registration_deadline), or the id of an item of this plan or an earlier plan of the chain, alone or with the field the text states (b03.start, p02). Empty when the text states none of these."
+          },
+          "approved_in": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "content_id",
+          "surface",
+          "slot",
+          "text",
+          "authority",
+          "edit_scope",
+          "source",
+          "depends_on",
+          "approved_in"
+        ]
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "scope": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "as_of_and_source": {
+            "type": "string"
+          },
+          "revisit_trigger": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "supersedes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "scope",
+          "reason",
+          "as_of_and_source",
+          "revisit_trigger",
+          "supersedes"
+        ]
+      }
+    },
+    "deferred": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "item": {
+            "type": "string"
+          },
+          "decided_in": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "item",
+          "decided_in",
+          "reason"
+        ]
+      }
+    },
+    "open_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "item": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "copy",
+              "fact",
+              "asset",
+              "config",
+              "ops",
+              "verify"
+            ],
+            "description": "copy: text not written yet; fact: a value the input does not give; asset: an image or file; config: a setting a person picks; ops: who runs a feature during the event; verify: behaviour to check in the rendered microsite or app before promising it."
+          },
+          "refs": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string"
+            },
+            "description": "section_id, instance_id, entry_id or content_id the item holds up; null or empty when none."
+          }
+        },
+        "required": [
+          "item",
+          "kind",
+          "refs"
+        ]
+      }
+    },
+    "blocked_operations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "operation": {
+            "type": "string"
+          },
+          "area": {
+            "type": "string",
+            "enum": [
+              "microsite",
+              "app",
+              "feature_content",
+              "engagement",
+              "visibility",
+              "other"
+            ]
+          },
+          "blocked_by": {
+            "type": "string"
+          },
+          "manual_step": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "step_id in manual_steps that does it by hand."
+          }
+        },
+        "required": [
+          "operation",
+          "area",
+          "blocked_by",
+          "manual_step"
+        ]
+      }
+    },
+    "manual_steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "step_id": {
+            "type": "string"
+          },
+          "screen": {
+            "type": "string",
+            "description": "Admin screen as the knowledge base names it, for example 'Microsite události' or 'Účastnická aplikace'."
+          },
+          "action": {
+            "type": "string"
+          },
+          "refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "kb_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "step_id",
+          "screen",
+          "action",
+          "refs",
+          "kb_ref"
+        ]
+      }
+    },
+    "handoffs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "target": {
+            "type": "string",
+            "enum": [
+              "preview_event_creation"
+            ],
+            "description": "The MCP tool that writes this part: only the structure of a new event's content features."
+          },
+          "arguments": {
+            "type": "object",
+            "description": "Only module_types, the list the creation tool accepts (locality, contact, sessions, speakers)."
+          },
+          "covers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "instance_ids whose feature the handoff creates, empty and unpublished."
+          },
+          "note": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "target",
+          "arguments",
+          "covers",
+          "note"
+        ]
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "output",
+    "scope",
+    "story_ref",
+    "story_basis",
+    "content_ref",
+    "registration_ref",
+    "language",
+    "mode",
+    "organization_context",
+    "feature_content",
+    "microsite",
+    "app",
+    "story_changes",
+    "content_items",
+    "decisions",
+    "deferred",
+    "open_items",
+    "blocked_operations",
+    "manual_steps",
+    "handoffs"
+  ]
+}

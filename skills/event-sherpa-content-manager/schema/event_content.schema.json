@@ -1,0 +1,885 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "event_content-v1",
+  "description": "Concept, engagement levels, programme, speakers, sponsors and exhibitors, and texts of one event, linked to an approved Event Story. Every text carries its authority.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "enum": [
+        "event_content-v1"
+      ]
+    },
+    "output": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Id and revision of this plan, the same shape in every Event Sherpa skill. output_id is assigned by whoever stores the plan and copied from the previous revision, null for a new or unstored plan; revision is 1 for a new plan, else the previous revision plus 1; supersedes_revision is the revision this one replaces (null for the first); change_id names the change that made this revision (null for the first); bindings are written by the MCP after a verified write and copied unchanged, never written by the skill.",
+      "required": [
+        "output_id",
+        "revision",
+        "supersedes_revision",
+        "change_id",
+        "bindings"
+      ],
+      "properties": {
+        "output_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "revision": {
+          "type": "integer"
+        },
+        "supersedes_revision": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "change_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "bindings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "ref",
+              "saved_ref",
+              "operation_id",
+              "verified_at"
+            ],
+            "properties": {
+              "ref": {
+                "type": "string",
+                "description": "id of the item in this plan, for example b03"
+              },
+              "saved_ref": {
+                "type": "string",
+                "description": "the saved object in the event, for example session:812"
+              },
+              "operation_id": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "verified_at": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "story_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "The approved Event Story this builds on. story_id and story_version always come from the story's presentation; blueprint_id and revision only when the story is stored, both null for a story made in the conversation.",
+      "properties": {
+        "story_id": {
+          "type": "string"
+        },
+        "story_version": {
+          "type": "integer"
+        },
+        "blueprint_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "revision": {
+          "type": [
+            "string",
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "story_id",
+        "story_version",
+        "blueprint_id",
+        "revision"
+      ]
+    },
+    "story_basis": {
+      "type": "object",
+      "description": "What the skill took from the approved Event Story, the same shape in every Event Sherpa skill. source is stored when the input held the complete saved story record with its blueprint_id, excerpt for any story without a blueprint_id (one written in this conversation, a conversation-only copy) and for part of a saved story with its capabilities, reference when only its id was; archetypes in the story's order (the first is the main one); modules are the eight Happenee modules in fixed order with the story's selection, absent when the story lists no such capability, unknown for a story given by reference.",
+      "additionalProperties": false,
+      "required": [
+        "source",
+        "archetypes",
+        "modules"
+      ],
+      "properties": {
+        "source": {
+          "enum": [
+            "stored",
+            "excerpt",
+            "reference"
+          ]
+        },
+        "archetypes": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "internal_corporate",
+              "external_client",
+              "conference",
+              "expo",
+              "incentive",
+              "hybrid",
+              "online_webinar",
+              "test_drive"
+            ]
+          }
+        },
+        "modules": {
+          "type": "array",
+          "minItems": 8,
+          "maxItems": 8,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "module",
+              "selection"
+            ],
+            "properties": {
+              "module": {
+                "enum": [
+                  "tickets",
+                  "registration-form",
+                  "event-microsite",
+                  "invitation-email",
+                  "confirmation-email",
+                  "email-campaigns",
+                  "on-site-check-in",
+                  "attendee-app"
+                ]
+              },
+              "selection": {
+                "enum": [
+                  "recommended",
+                  "conditional",
+                  "declined",
+                  "not_selected",
+                  "absent",
+                  "unknown"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "language": {
+      "type": "string",
+      "enum": [
+        "cs",
+        "en"
+      ]
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "compose",
+        "adopt"
+      ]
+    },
+    "concept": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "statement_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "variants": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "label": {
+                "type": "string"
+              },
+              "statement": {
+                "type": "string"
+              },
+              "consequence": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "label",
+              "statement",
+              "consequence"
+            ]
+          }
+        }
+      },
+      "required": [
+        "statement_ref",
+        "variants"
+      ]
+    },
+    "engagement_levels": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "level": {
+            "type": "string",
+            "enum": [
+              "listen",
+              "react",
+              "share"
+            ]
+          },
+          "asks_of_attendee": {
+            "type": "string"
+          },
+          "used_in": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "level",
+          "asks_of_attendee",
+          "used_in"
+        ]
+      }
+    },
+    "programme": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "block_id": {
+            "type": "string",
+            "description": "Stable across revisions."
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "session",
+              "break",
+              "networking",
+              "arrival"
+            ]
+          },
+          "admin_type": {
+            "type": "object",
+            "additionalProperties": false,
+            "description": "The session type the block takes in the admin. base_kind decides behaviour: session maps to keynote; break, arrival and networking to break, whose title tells attendees what happens, or to keynote when an approved description goes with the block or a person chose it, recorded in decisions.",
+            "properties": {
+              "base_kind": {
+                "type": "string",
+                "enum": [
+                  "keynote",
+                  "break"
+                ]
+              },
+              "audience": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "null when the block is for everyone; else the group the brief restricts it to, so a person picks a type with matching visibility."
+              }
+            },
+            "required": [
+              "base_kind",
+              "audience"
+            ]
+          },
+          "start": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Event-local HH:MM, only when confirmed."
+          },
+          "end": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Event-local HH:MM, only when confirmed."
+          },
+          "duration_min": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "purpose": {
+            "type": "string"
+          },
+          "title_ref": {
+            "type": "string"
+          },
+          "description_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "speakers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "person_id": {
+                  "type": "string",
+                  "description": "A person_id from people[]."
+                },
+                "role": {
+                  "type": "string",
+                  "description": "The person's role, the same text as in people[]; never a name."
+                },
+                "assignment": {
+                  "type": "string",
+                  "enum": [
+                    "s",
+                    "m"
+                  ],
+                  "description": "program-v1 assignment role in this block: s speaker, m moderator."
+                }
+              },
+              "required": [
+                "person_id",
+                "role",
+                "assignment"
+              ]
+            },
+            "description": "Speakers of the block in order of speaking. The block alone holds the links; a person appears at most once per block."
+          },
+          "uses_registration": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "source": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "block_id",
+          "kind",
+          "admin_type",
+          "start",
+          "end",
+          "duration_min",
+          "purpose",
+          "title_ref",
+          "description_ref",
+          "speakers",
+          "uses_registration",
+          "source"
+        ]
+      }
+    },
+    "people": {
+      "type": "array",
+      "description": "Speakers and moderators the programme needs, one entry per person. Converts one to one into program-v1 speakers.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "person_id": {
+            "type": "string",
+            "description": "Stable across revisions, for example p01."
+          },
+          "role": {
+            "type": "string",
+            "description": "Readable role, never a name."
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "confirmed",
+              "recommended",
+              "missing"
+            ],
+            "description": "confirmed: the input confirms them; recommended: recommended but not confirmed (Compose's proposal or marked so in the input); missing: needed, nobody lined up yet."
+          },
+          "profile": {
+            "type": "object",
+            "additionalProperties": false,
+            "description": "content_ids of the program-v1 speaker fields; null when the input does not give the fact. Name, company, position and bio come only from the input, verbatim.",
+            "properties": {
+              "name_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "program-v1 name (first name), at most 50 characters."
+              },
+              "surname_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "program-v1 surname, at most 50 characters."
+              },
+              "company_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "program-v1 company, at most 150 characters."
+              },
+              "position_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "program-v1 position, at most 255 characters."
+              },
+              "description_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "program-v1 description (bio), at most 8000 characters."
+              }
+            },
+            "required": [
+              "name_ref",
+              "surname_ref",
+              "company_ref",
+              "position_ref",
+              "description_ref"
+            ]
+          },
+          "source": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "person_id",
+          "role",
+          "status",
+          "profile",
+          "source"
+        ]
+      }
+    },
+    "partners": {
+      "type": "array",
+      "description": "Sponsors and exhibitors of the event. No MCP tool writes them yet, so each one is a manual step in blocked_operations.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "partner_id": {
+            "type": "string",
+            "description": "Stable across revisions, for example sp01 or ex01."
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "sponsor",
+              "exhibitor"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "confirmed",
+              "recommended",
+              "missing"
+            ],
+            "description": "confirmed: the input confirms them; recommended: recommended but not confirmed (Compose's proposal or marked so in the input); missing: needed, nobody lined up yet."
+          },
+          "role": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Level or category in the input's words (a sponsor's category, an exhibitor's category); null when the input gives none. Never invented."
+          },
+          "place": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "An exhibitor's stand or place in the input's words; else null."
+          },
+          "name_ref": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "content_id of the partner's name; null when no name was supplied."
+          },
+          "description_ref": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "content_id of the partner profile description, or null."
+          },
+          "blocks": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "block_ids where the partner appears (its presentation, its logo on the session); [] when none."
+          },
+          "reason": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "For a recommended partner: why the event needs it. Else null."
+          },
+          "source": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "partner_id",
+          "kind",
+          "status",
+          "role",
+          "place",
+          "name_ref",
+          "description_ref",
+          "blocks",
+          "reason",
+          "source"
+        ]
+      }
+    },
+    "content_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "content_id": {
+            "type": "string",
+            "description": "Stable across revisions."
+          },
+          "surface": {
+            "type": "string",
+            "enum": [
+              "concept",
+              "programme",
+              "speakers",
+              "partners",
+              "microsite",
+              "registration",
+              "email",
+              "app"
+            ]
+          },
+          "slot": {
+            "type": "string"
+          },
+          "text": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "null when the text is still open and may not be written."
+          },
+          "authority": {
+            "type": "string",
+            "enum": [
+              "verbatim",
+              "proposal",
+              "editable"
+            ]
+          },
+          "edit_scope": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "source": {
+            "type": "string"
+          },
+          "depends_on": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "What the text states and must follow when it changes: fact:<key> for a story fact (the key of a confirmed fact or unknown, for example fact:venue), setting:<key> for a Register setting (for example setting:registration_deadline), or the id of an item of this plan or an earlier plan of the chain, alone or with the field the text states (b03.start, p02). Empty when the text states none of these."
+          },
+          "approved_in": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "content_id",
+          "surface",
+          "slot",
+          "text",
+          "authority",
+          "edit_scope",
+          "source",
+          "depends_on",
+          "approved_in"
+        ]
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "scope": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "as_of_and_source": {
+            "type": "string"
+          },
+          "revisit_trigger": {
+            "type": "string"
+          },
+          "supersedes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "scope",
+          "reason",
+          "as_of_and_source",
+          "revisit_trigger",
+          "supersedes"
+        ]
+      }
+    },
+    "deferred": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "item": {
+            "type": "string"
+          },
+          "decided_in": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "item",
+          "decided_in",
+          "reason"
+        ]
+      }
+    },
+    "open_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "item": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "copy",
+              "capacity",
+              "speaker",
+              "partner",
+              "ops",
+              "content"
+            ]
+          },
+          "blocks": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string"
+            },
+            "description": "block_ids the open item holds up; null or empty when none."
+          },
+          "refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "person_ids and partner_ids the entry concerns; [] when none."
+          }
+        },
+        "required": [
+          "item",
+          "kind",
+          "blocks",
+          "refs"
+        ]
+      }
+    },
+    "blocked_operations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "operation": {
+            "type": "string"
+          },
+          "blocked_by": {
+            "type": "string"
+          },
+          "blocks": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "block_ids the operation concerns; [] when none."
+          },
+          "refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "person_ids and partner_ids the entry concerns; [] when none."
+          }
+        },
+        "required": [
+          "operation",
+          "blocked_by",
+          "blocks",
+          "refs"
+        ]
+      }
+    },
+    "story_changes": {
+      "type": "array",
+      "description": "Proposed changes to the approved Event Story for a person to approve, in the shape every Event Sherpa skill uses. Compose never applies them; approved changes go into the next story version through Describe.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "change": {
+            "type": "string",
+            "enum": [
+              "add",
+              "drop",
+              "change"
+            ]
+          },
+          "module": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "tickets",
+              "registration-form",
+              "event-microsite",
+              "invitation-email",
+              "confirmation-email",
+              "email-campaigns",
+              "on-site-check-in",
+              "attendee-app",
+              null
+            ],
+            "description": "The module the change adds, drops or changes, by its key; null when the change concerns a content or engagement feature or a setting."
+          },
+          "subject": {
+            "type": "string",
+            "description": "The module, feature or setting of the story, in product terms, for example the Sponsors content feature."
+          },
+          "reason": {
+            "type": "string"
+          },
+          "knowledge_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Knowledge base source ids that support the change, for example kb.cs.03.12; at least one, only articles the skill carries."
+          },
+          "refs": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string"
+            },
+            "description": "person_id, partner_id or block_id of this output that depend on the change; null or empty when none. Nothing listed here is ready to write while the change waits."
+          }
+        },
+        "required": [
+          "id",
+          "change",
+          "module",
+          "subject",
+          "reason",
+          "knowledge_ids",
+          "refs"
+        ]
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "output",
+    "story_ref",
+    "story_basis",
+    "language",
+    "mode",
+    "concept",
+    "engagement_levels",
+    "programme",
+    "people",
+    "partners",
+    "content_items",
+    "decisions",
+    "deferred",
+    "open_items",
+    "blocked_operations",
+    "story_changes"
+  ]
+}

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Event Sherpa: App Designer"
+  short_description: "Plan the attendee app"
+  icon_small: "./assets/icon.png"
+  icon_large: "./assets/icon.png"
+  brand_color: "#1840DA"
+  default_prompt: "Use $event-sherpa-app-designer to plan the attendee app after an approved Event Story."

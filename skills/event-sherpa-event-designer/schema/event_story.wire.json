@@ -1,0 +1,1784 @@
+{
+  "title": "Event Story",
+  "description": "Canonical Event Story: the 27 top-level keys of solution_blueprint_template.json verbatim, plus the Describe-specific top-level fields. Vendor-agnostic subset: type, properties, required, enum, items, anyOf, const only. No $ref, no pattern/format/minimum/maximum anywhere.",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "v9-review-proposal"
+    },
+    "scope": {
+      "type": "object",
+      "properties": {
+        "consumer": {
+          "const": "prospect"
+        },
+        "organization_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "event_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "permissions_verified": {
+          "const": false
+        }
+      },
+      "required": [
+        "consumer",
+        "organization_id",
+        "event_id",
+        "permissions_verified"
+      ]
+    },
+    "confirmed_facts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "source_turn_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "source_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "as_of": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "key",
+          "value",
+          "source_turn_id",
+          "source_refs",
+          "as_of"
+        ]
+      }
+    },
+    "unknowns": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          },
+          "question": {
+            "type": "string"
+          },
+          "why": {
+            "type": "string"
+          },
+          "changes_decision": {
+            "type": "boolean"
+          },
+          "critical": {
+            "type": "boolean"
+          },
+          "answer_status": {
+            "enum": [
+              "unasked",
+              "answered_unknown",
+              "deferred"
+            ]
+          },
+          "asked_in_turn": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "assumption": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "key",
+          "question",
+          "why",
+          "changes_decision",
+          "critical",
+          "answer_status",
+          "asked_in_turn",
+          "assumption"
+        ]
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "scope": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "as_of_and_source": {
+            "type": "string"
+          },
+          "revisit_trigger": {
+            "type": "string"
+          },
+          "supersedes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "scope",
+          "reason",
+          "as_of_and_source",
+          "revisit_trigger",
+          "supersedes"
+        ]
+      }
+    },
+    "outcomes": {
+      "type": "object",
+      "properties": {
+        "business": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "participant": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "operator": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "partner": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "business",
+        "participant",
+        "operator",
+        "partner"
+      ]
+    },
+    "archetypes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "enum": [
+              "internal_corporate",
+              "external_client",
+              "conference",
+              "expo",
+              "incentive",
+              "hybrid",
+              "online_webinar",
+              "test_drive"
+            ]
+          },
+          "confidence": {
+            "type": "string"
+          },
+          "kb_ref": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "key",
+          "confidence",
+          "kb_ref"
+        ]
+      }
+    },
+    "journeys": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "actor_key": {
+            "type": "string"
+          },
+          "goal": {
+            "type": "string"
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "phase_id": {
+                  "enum": [
+                    "before",
+                    "arrival",
+                    "during",
+                    "people",
+                    "live_operations",
+                    "brand_partners",
+                    "after",
+                    "next_event"
+                  ]
+                },
+                "action": {
+                  "type": "string"
+                },
+                "capability_keys": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "phase_id",
+                "action",
+                "capability_keys"
+              ]
+            }
+          },
+          "alternative_path": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "actor_key",
+          "goal",
+          "steps",
+          "alternative_path"
+        ]
+      }
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "truth_status": {
+            "enum": [
+              "standard",
+              "configurable",
+              "needs validation",
+              "planned-or-not-available"
+            ]
+          },
+          "availability_subtype": {
+            "anyOf": [
+              {
+                "enum": [
+                  "planned",
+                  "proposed",
+                  "unavailable"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "canonical_source": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "version_or_as_of": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "confidence": {
+            "type": "string"
+          },
+          "commercial_state": {
+            "enum": [
+              "already_included",
+              "additional_purchase",
+              "scoped_service",
+              "unknown"
+            ]
+          },
+          "commercial_boundary_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "selection": {
+            "enum": [
+              "recommended",
+              "conditional",
+              "declined",
+              "not_selected"
+            ]
+          },
+          "limitations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "phase_keys": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "before",
+                "arrival",
+                "during",
+                "people",
+                "live_operations",
+                "brand_partners",
+                "after",
+                "next_event"
+              ]
+            }
+          },
+          "branch_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "source_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "key",
+          "name",
+          "reason",
+          "truth_status",
+          "availability_subtype",
+          "canonical_source",
+          "version_or_as_of",
+          "confidence",
+          "commercial_state",
+          "commercial_boundary_evidence",
+          "selection",
+          "limitations",
+          "phase_keys",
+          "branch_ids",
+          "source_refs"
+        ]
+      }
+    },
+    "do_not_use": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "capability_key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reason": {
+            "type": "string"
+          },
+          "reconsider_if": {
+            "type": "string"
+          },
+          "rule_ref": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "capability_key",
+          "label",
+          "reason",
+          "reconsider_if",
+          "rule_ref"
+        ]
+      }
+    },
+    "setup_dependencies": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "readiness": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "enum": [
+              "QA1",
+              "QA2",
+              "QA3"
+            ]
+          },
+          "checkpoint": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "not_verified"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "checkpoint",
+          "status"
+        ]
+      }
+    },
+    "template_candidate": {
+      "type": "null"
+    },
+    "action_contract_version": {
+      "type": "null"
+    },
+    "allowed_overrides": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "manual_next_steps": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "next_best_step": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "primary": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "enum": [
+                    "book_review",
+                    "send_story",
+                    "continue_with_expert",
+                    "clarify_brief",
+                    "ask",
+                    "portfolio_review",
+                    "security_review"
+                  ]
+                },
+                "label": {
+                  "type": "string"
+                },
+                "target_key": {
+                  "type": "string"
+                },
+                "what_happens_next": {
+                  "type": "string"
+                },
+                "who_follows_up": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "kind",
+                "label",
+                "target_key",
+                "what_happens_next",
+                "who_follows_up"
+              ]
+            },
+            "alternatives": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "book_review",
+                      "send_story",
+                      "continue_with_expert",
+                      "clarify_brief",
+                      "ask",
+                      "portfolio_review",
+                      "security_review"
+                    ]
+                  },
+                  "label": {
+                    "type": "string"
+                  },
+                  "target_key": {
+                    "type": "string"
+                  },
+                  "what_happens_next": {
+                    "type": "string"
+                  },
+                  "who_follows_up": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "kind",
+                  "label",
+                  "target_key",
+                  "what_happens_next",
+                  "who_follows_up"
+                ]
+              }
+            }
+          },
+          "required": [
+            "primary",
+            "alternatives"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "provenance": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "source_id": {
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "skill",
+              "knowledge",
+              "target_config"
+            ]
+          },
+          "tier": {
+            "enum": [
+              "A",
+              "B"
+            ]
+          },
+          "classification": {
+            "type": "string"
+          },
+          "commit_sha": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "as_of": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "prompt_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "pack_digest": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "source_id",
+          "kind",
+          "tier",
+          "classification",
+          "commit_sha",
+          "as_of",
+          "prompt_version",
+          "pack_digest"
+        ]
+      }
+    },
+    "execution_status": {
+      "type": "string",
+      "const": "proposal_only"
+    },
+    "human_approved": {
+      "type": "boolean",
+      "const": false
+    },
+    "opportunities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "event_story_schema_version": {
+      "const": "1.0"
+    },
+    "language": {
+      "enum": [
+        "cs",
+        "en"
+      ]
+    },
+    "output_status": {
+      "enum": [
+        "ready",
+        "insufficient_brief"
+      ]
+    },
+    "brief_confirmation": {
+      "type": "object",
+      "properties": {
+        "revision": {
+          "type": "integer"
+        },
+        "summary_digest": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "confirmed": {
+          "type": "boolean"
+        },
+        "confirmed_at": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source_turn_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "revision",
+        "summary_digest",
+        "confirmed",
+        "confirmed_at",
+        "source_turn_id"
+      ]
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "impact_if_wrong": {
+            "type": "string"
+          },
+          "accepted_in_confirmation": {
+            "type": "boolean"
+          },
+          "source_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "key",
+          "value",
+          "reason",
+          "impact_if_wrong",
+          "accepted_in_confirmation",
+          "source_refs"
+        ]
+      }
+    },
+    "presentation": {
+      "type": "object",
+      "properties": {
+        "story_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "story_version": {
+          "type": "integer"
+        },
+        "hero": {
+          "type": "object",
+          "properties": {
+            "event_name": {
+              "type": "string"
+            },
+            "organizer": {
+              "type": "string"
+            },
+            "organizer_name": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "goal": {
+              "type": "string"
+            },
+            "audience": {
+              "type": "string"
+            },
+            "understood_summary": {
+              "type": "string"
+            },
+            "scale": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "date_or_period": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "archetype_label": {
+              "type": "string"
+            },
+            "format_assumption": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "event_name",
+            "organizer",
+            "organizer_name",
+            "goal",
+            "audience",
+            "understood_summary",
+            "scale",
+            "date_or_period",
+            "archetype_label",
+            "format_assumption"
+          ]
+        },
+        "understood_cards": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              },
+              "certainty": {
+                "enum": [
+                  "confirmed",
+                  "working_assumption",
+                  "unknown"
+                ]
+              },
+              "fact_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "assumption_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "key",
+              "label",
+              "value",
+              "certainty",
+              "fact_ids",
+              "assumption_ids"
+            ]
+          }
+        },
+        "journey_map": {
+          "type": "object",
+          "properties": {
+            "phases": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "phase_key": {
+                    "enum": [
+                      "before",
+                      "arrival",
+                      "during",
+                      "people",
+                      "live_operations",
+                      "brand_partners",
+                      "after",
+                      "next_event"
+                    ]
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "kind": {
+                    "enum": [
+                      "timeline",
+                      "across"
+                    ]
+                  },
+                  "applicable": {
+                    "type": "boolean"
+                  },
+                  "reason_if_skipped": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "summary": {
+                    "type": "string"
+                  },
+                  "branches": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "branch_id": {
+                          "type": "string"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "participant_moment": {
+                          "type": "string"
+                        },
+                        "condition": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "capability_keys": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "has_detail": {
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "branch_id",
+                        "title",
+                        "participant_moment",
+                        "condition",
+                        "capability_keys",
+                        "has_detail"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "phase_key",
+                  "title",
+                  "kind",
+                  "applicable",
+                  "reason_if_skipped",
+                  "summary",
+                  "branches"
+                ]
+              }
+            }
+          },
+          "required": [
+            "phases"
+          ]
+        },
+        "branch_details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "branch_id": {
+                "type": "string"
+              },
+              "phase_key": {
+                "enum": [
+                  "before",
+                  "arrival",
+                  "during",
+                  "people",
+                  "live_operations",
+                  "brand_partners",
+                  "after",
+                  "next_event"
+                ]
+              },
+              "what_we_understood": {
+                "type": "string"
+              },
+              "recommended_setup": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "why": {
+                "type": "string"
+              },
+              "needs_validation": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "data_needed": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "type": "string"
+                    },
+                    "reason": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "enum": [
+                        "provided",
+                        "unknown",
+                        "assumed"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "key",
+                    "reason",
+                    "status"
+                  ]
+                }
+              },
+              "visual_ref": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "verification_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "branch_id",
+              "phase_key",
+              "what_we_understood",
+              "recommended_setup",
+              "why",
+              "needs_validation",
+              "data_needed",
+              "visual_ref",
+              "verification_ids"
+            ]
+          }
+        },
+        "human_verification": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "question": {
+                "type": "string"
+              },
+              "reason": {
+                "type": "string"
+              },
+              "owner": {
+                "type": "string"
+              },
+              "critical": {
+                "type": "boolean"
+              },
+              "public": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "id",
+              "question",
+              "reason",
+              "owner",
+              "critical",
+              "public"
+            ]
+          }
+        },
+        "flags": {
+          "type": "object",
+          "properties": {
+            "prototype": {
+              "type": "boolean"
+            },
+            "handmade_sample": {
+              "type": "boolean"
+            },
+            "simulated_inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "label": {
+              "type": "object",
+              "properties": {
+                "cs": {
+                  "type": "string"
+                },
+                "en": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "cs",
+                "en"
+              ]
+            }
+          },
+          "required": [
+            "prototype",
+            "handmade_sample",
+            "simulated_inputs",
+            "label"
+          ]
+        },
+        "brand": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "owner": {
+                  "anyOf": [
+                    {
+                      "enum": [
+                        "organizer",
+                        "client"
+                      ]
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "logo_ref": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "accent_hex": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "secondary_hex": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "hero_image_ref": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "site_url": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "terms": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "their_word": {
+                        "type": "string"
+                      },
+                      "our_word": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "their_word",
+                      "our_word"
+                    ]
+                  }
+                },
+                "source": {
+                  "enum": [
+                    "brief",
+                    "question",
+                    "upload",
+                    "web_probe",
+                    "none"
+                  ]
+                },
+                "confirmed": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "owner",
+                "logo_ref",
+                "accent_hex",
+                "secondary_hex",
+                "hero_image_ref",
+                "site_url",
+                "terms",
+                "source",
+                "confirmed"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "input": {
+          "type": "object",
+          "properties": {
+            "raw_brief": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "brief_ref": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "received_at": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "refused_instructions": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "raw_brief",
+            "brief_ref",
+            "received_at",
+            "refused_instructions"
+          ]
+        },
+        "agency_context": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "is_agency": {
+                  "type": "boolean"
+                },
+                "end_client_label": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "decision_authority": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "is_agency",
+                "end_client_label",
+                "decision_authority"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "conversation": {
+          "type": "object",
+          "properties": {
+            "turn_count": {
+              "type": "integer"
+            },
+            "questions_asked": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "confirmation_turn_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "turn_count",
+            "questions_asked",
+            "confirmation_turn_id"
+          ]
+        },
+        "insufficient": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "missing_unknown_ids": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "safe_next_step": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "message",
+                "missing_unknown_ids",
+                "safe_next_step"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "organizer_scope": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "story_id",
+        "story_version",
+        "hero",
+        "understood_cards",
+        "journey_map",
+        "branch_details",
+        "human_verification",
+        "flags",
+        "brand",
+        "input",
+        "agency_context",
+        "conversation",
+        "insufficient",
+        "organizer_scope"
+      ]
+    },
+    "gate": {
+      "type": "object",
+      "properties": {
+        "public_sections": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "hero",
+              "understood_cards",
+              "journey_map",
+              "critical_verification",
+              "next_steps"
+            ]
+          }
+        },
+        "verified_sections": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "branch_details",
+              "do_not_use",
+              "unknowns",
+              "save_send_share"
+            ]
+          }
+        },
+        "verification_method": {
+          "enum": [
+            "email_magic_link"
+          ]
+        },
+        "marketing_consent": {
+          "enum": [
+            "separate_optional_unchecked"
+          ]
+        }
+      },
+      "required": [
+        "public_sections",
+        "verified_sections",
+        "verification_method",
+        "marketing_consent"
+      ]
+    },
+    "prototype": {
+      "type": "boolean"
+    },
+    "simulation_flags": {
+      "type": "object",
+      "properties": {
+        "voice": {
+          "type": "boolean"
+        },
+        "upload": {
+          "type": "boolean"
+        },
+        "generation": {
+          "type": "boolean"
+        },
+        "email_verification": {
+          "type": "boolean"
+        },
+        "booking": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "voice",
+        "upload",
+        "generation",
+        "email_verification",
+        "booking"
+      ]
+    },
+    "event_success": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "measure": {
+              "type": "string"
+            },
+            "shown_to": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "measure",
+            "shown_to"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "success_criteria": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "side": {
+            "enum": [
+              "business",
+              "participant",
+              "operator",
+              "partner"
+            ]
+          },
+          "goal": {
+            "type": "string"
+          },
+          "measure": {
+            "type": "string"
+          },
+          "certainty": {
+            "enum": [
+              "confirmed",
+              "working_assumption"
+            ]
+          },
+          "evidence": {
+            "enum": [
+              "metric",
+              "qualitative",
+              "both",
+              "not_collected"
+            ]
+          },
+          "data_sources": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "registration",
+                "attendance",
+                "app",
+                "communication",
+                "feedback_survey",
+                "partner_report",
+                "sales_followup",
+                "other"
+              ]
+            }
+          },
+          "evaluated_when": {
+            "enum": [
+              "before",
+              "during",
+              "right_after",
+              "weeks_after",
+              "unknown"
+            ]
+          },
+          "shown_to": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "decision_after": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "side",
+          "goal",
+          "measure",
+          "certainty",
+          "evidence",
+          "data_sources",
+          "evaluated_when",
+          "shown_to",
+          "decision_after"
+        ]
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "scope",
+    "confirmed_facts",
+    "unknowns",
+    "decisions",
+    "outcomes",
+    "archetypes",
+    "journeys",
+    "capabilities",
+    "do_not_use",
+    "setup_dependencies",
+    "readiness",
+    "template_candidate",
+    "action_contract_version",
+    "allowed_overrides",
+    "manual_next_steps",
+    "risks",
+    "next_best_step",
+    "provenance",
+    "execution_status",
+    "human_approved",
+    "opportunities",
+    "event_story_schema_version",
+    "language",
+    "output_status",
+    "brief_confirmation",
+    "assumptions",
+    "presentation",
+    "gate",
+    "prototype",
+    "simulation_flags",
+    "event_success",
+    "success_criteria"
+  ]
+}

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Event Sherpa: Product Specialist"
+  short_description: "Answer how Happenee works, with a link to the Help Center article"
+  icon_small: "./assets/icon.png"
+  icon_large: "./assets/icon.png"
+  brand_color: "#1840DA"
+  default_prompt: "Use $event-sherpa-product-specialist to answer how something works in Happenee, with a link to the Help Center article."

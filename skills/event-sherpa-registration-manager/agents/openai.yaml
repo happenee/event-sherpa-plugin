@@ -1,0 +1,7 @@
+interface:
+  display_name: "Event Sherpa: Registration Manager"
+  short_description: "Plan the registration form and the attendee journey"
+  icon_small: "./assets/icon.png"
+  icon_large: "./assets/icon.png"
+  brand_color: "#1840DA"
+  default_prompt: "Use $event-sherpa-registration-manager to plan the registration and the attendee journey after an approved Event Story."

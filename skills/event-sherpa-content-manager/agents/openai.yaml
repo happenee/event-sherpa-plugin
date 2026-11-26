@@ -1,0 +1,7 @@
+interface:
+  display_name: "Event Sherpa: Content Manager"
+  short_description: "Plan event content and targeted native agenda edits"
+  icon_small: "./assets/icon.png"
+  icon_large: "./assets/icon.png"
+  brand_color: "#1840DA"
+  default_prompt: "Use $event-sherpa-content-manager to draft agenda and texts after an approved Event Story, or make a targeted native agenda edit from current event facts."

@@ -1,0 +1,328 @@
+{
+  "modules": [
+    {
+      "aliases": [],
+      "articles": [
+        "05.01",
+        "05.02",
+        "05.03",
+        "05.04"
+      ],
+      "capability_keys": [
+        "check-in-place",
+        "check-out",
+        "guest-qr-code",
+        "kiosk-mode",
+        "on-site-check-in",
+        "one-time-check",
+        "print-badge",
+        "qr-ticket",
+        "recurring-check",
+        "self-check-in",
+        "service-app",
+        "staff-mode"
+      ],
+      "tag": "checkin_a_tisk_jmenovek",
+      "web_slugs": [
+        "checkin-onsite"
+      ]
+    },
+    {
+      "aliases": [],
+      "articles": [
+        "04.01",
+        "04.02",
+        "04.03",
+        "04.04",
+        "04.05",
+        "04.06",
+        "04.07",
+        "04.09",
+        "04.10",
+        "04.11",
+        "04.12",
+        "04.13",
+        "04.14"
+      ],
+      "capability_keys": [
+        "confirmation-email",
+        "email-campaigns",
+        "invitation-email"
+      ],
+      "tag": "komunikace_a_pozvanky",
+      "web_slugs": [
+        "communication-emailing"
+      ]
+    },
+    {
+      "aliases": [],
+      "articles": [
+        "03.17"
+      ],
+      "capability_keys": [
+        "leaderboard"
+      ],
+      "tag": "leaderboard",
+      "web_slugs": []
+    },
+    {
+      "aliases": [],
+      "articles": [
+        "03.02"
+      ],
+      "capability_keys": [
+        "venue"
+      ],
+      "tag": "lokalita",
+      "web_slugs": []
+    },
+    {
+      "aliases": [],
+      "articles": [
+        "03.01",
+        "03.02",
+        "03.04"
+      ],
+      "capability_keys": [
+        "event-microsite"
+      ],
+      "tag": "microsite",
+      "web_slugs": [
+        "event-microsites"
+      ]
+    },
+    {
+      "aliases": [
+        "agenda-sessions",
+        "program_a_sessions",
+        "program-a-sessions"
+      ],
+      "articles": [
+        "03.15"
+      ],
+      "capability_keys": [],
+      "tag": "moje_agenda",
+      "web_slugs": []
+    },
+    {
+      "aliases": [],
+      "articles": [
+        "02.13"
+      ],
+      "capability_keys": [],
+      "tag": "nastaveni_udalosti",
+      "web_slugs": []
+    },
+    {
+      "aliases": [],
+      "articles": [
+        "03.13",
+        "03.16"
+      ],
+      "capability_keys": [
+        "attendees-feature",
+        "matchmaking"
+      ],
+      "tag": "networking",
+      "web_slugs": [
+        "networking-meetings"
+      ]
+    },
+    {
+      "aliases": [],
+      "articles": [
+        "04.08",
+        "04.10"
+      ],
+      "capability_keys": [
+        "notifications"
+      ],
+      "tag": "notifikace",
+      "web_slugs": [
+        "event-app"
+      ]
+    },
+    {
+      "aliases": [],
+      "articles": [
+        "03.18",
+        "06.05"
+      ],
+      "capability_keys": [
+        "environment-3d",
+        "livestream",
+        "online-module",
+        "social-wall"
+      ],
+      "tag": "online_modul",
+      "web_slugs": [
+        "3d-environment"
+      ]
+    },
+    {
+      "aliases": [],
+      "articles": [
+        "03.06",
+        "03.07",
+        "03.08",
+        "03.09",
+        "03.10",
+        "03.11",
+        "03.20",
+        "03.21"
+      ],
+      "capability_keys": [
+        "agenda"
+      ],
+      "tag": "program_a_sessions",
+      "web_slugs": [
+        "agenda-sessions"
+      ]
+    },
+    {
+      "aliases": [],
+      "articles": [
+        "07.10"
+      ],
+      "capability_keys": [],
+      "tag": "prurezovy",
+      "web_slugs": []
+    },
+    {
+      "aliases": [],
+      "articles": [
+        "03.03",
+        "03.19"
+      ],
+      "capability_keys": [
+        "speakers"
+      ],
+      "tag": "recnici",
+      "web_slugs": [
+        "speakers"
+      ]
+    },
+    {
+      "aliases": [],
+      "articles": [
+        "01.04",
+        "02.04",
+        "02.05",
+        "02.06",
+        "02.08",
+        "02.09",
+        "02.12",
+        "02.13",
+        "02.15"
+      ],
+      "capability_keys": [
+        "nominations",
+        "registration-form",
+        "registration-information",
+        "wait-list"
+      ],
+      "tag": "registrace",
+      "web_slugs": [
+        "registration-access",
+        "workshops-capacity"
+      ]
+    },
+    {
+      "aliases": [],
+      "articles": [
+        "06.01",
+        "06.02",
+        "06.03",
+        "06.04",
+        "06.05"
+      ],
+      "capability_keys": [
+        "partner-api"
+      ],
+      "tag": "reporting_a_statistiky",
+      "web_slugs": [
+        "analytics-integrations"
+      ]
+    },
+    {
+      "aliases": [],
+      "articles": [
+        "03.12",
+        "03.13",
+        "03.22",
+        "03.23"
+      ],
+      "capability_keys": [
+        "exhibitors",
+        "sponsors"
+      ],
+      "tag": "sponzori_a_vystavovatele",
+      "web_slugs": [
+        "sponsors-exhibitors"
+      ]
+    },
+    {
+      "aliases": [],
+      "articles": [
+        "02.03",
+        "02.07",
+        "02.14",
+        "02.15",
+        "03.11"
+      ],
+      "capability_keys": [
+        "groups-visibility"
+      ],
+      "tag": "ucastnici_skupiny_a_viditelnost",
+      "web_slugs": [
+        "contacts-audiences"
+      ]
+    },
+    {
+      "aliases": [],
+      "articles": [
+        "03.02",
+        "03.14",
+        "03.24",
+        "04.07"
+      ],
+      "capability_keys": [
+        "attendee-app",
+        "white-label"
+      ],
+      "tag": "ucastnicka_aplikace",
+      "web_slugs": [
+        "event-app"
+      ]
+    },
+    {
+      "aliases": [],
+      "articles": [
+        "03.05"
+      ],
+      "capability_keys": [
+        "custom-content"
+      ],
+      "tag": "vlastni_obsah",
+      "web_slugs": []
+    },
+    {
+      "aliases": [],
+      "articles": [
+        "02.10",
+        "02.11",
+        "02.13",
+        "06.04"
+      ],
+      "capability_keys": [
+        "tickets"
+      ],
+      "tag": "vstupenky_a_objednavky",
+      "web_slugs": [
+        "tickets-payments"
+      ]
+    }
+  ],
+  "note": "Which knowledge base articles a module pulls in, projected out of the repository crosswalk for this package. `tag` is the module tag the articles carry in their frontmatter and in the digest of the instructions. `articles` are the numbers of that module's on-demand articles, without a language, because Czech and English are mirrored pairs: one article is `knowledge/ondemand/kb.<lang>.<number>.md`. `capability_keys` are keys of the capability registry the instructions embed, so a capability the story names finds its module; `web_slugs` and `aliases` are the other names the same module answers to. A module with no `articles` has none that load on demand; its articles are inlined in the instructions. The module ids of the internal layer are not here.",
+  "schema_version": "1.0"
+}

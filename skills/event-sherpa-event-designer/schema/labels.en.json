@@ -1,0 +1,51 @@
+{
+  "language": "en",
+  "labels_version": 1,
+  "truth_status": {
+    "standard": "Standard",
+    "configurable": "Configurable",
+    "needs validation": "Needs validation",
+    "planned-or-not-available": "Planned or not available"
+  },
+  "commercial_state": {
+    "already_included": "Included in the licence",
+    "additional_purchase": "Additional purchase",
+    "scoped_service": "Scoped service",
+    "unknown": "Not verified for this customer"
+  },
+  "certainty": {
+    "confirmed": "Confirmed",
+    "working_assumption": "Working assumption",
+    "unknown": "Unknown"
+  },
+  "phase_key": {
+    "before": "Before the event",
+    "arrival": "Arrival",
+    "during": "During",
+    "people": "People",
+    "live_operations": "Live operations",
+    "brand_partners": "Brand and partners",
+    "after": "After the event",
+    "next_event": "Next event"
+  },
+  "kind": {
+    "book_review": "Book a review",
+    "send_story": "Send Event Story",
+    "continue_with_expert": "Continue with an expert",
+    "clarify_brief": "Clarify the brief",
+    "ask": "Ask about this Event Story",
+    "portfolio_review": "Portfolio review",
+    "security_review": "Security review"
+  },
+  "selection": {
+    "recommended": "Recommended",
+    "conditional": "Conditional",
+    "declined": "Declined by the customer",
+    "not_selected": "Not selected"
+  },
+  "answer_status": {
+    "unasked": "Not asked",
+    "answered_unknown": "Answered: don't know",
+    "deferred": "Deferred"
+  }
+}

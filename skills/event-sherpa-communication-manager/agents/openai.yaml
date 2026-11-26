@@ -1,0 +1,7 @@
+interface:
+  display_name: "Event Sherpa: Communication Manager"
+  short_description: "Plan the e-mails to attendees"
+  icon_small: "./assets/icon.png"
+  icon_large: "./assets/icon.png"
+  brand_color: "#1840DA"
+  default_prompt: "Use $event-sherpa-communication-manager to plan the invitation, reminders and other e-mails after an approved Event Story."

@@ -1,0 +1,51 @@
+{
+  "language": "cs",
+  "labels_version": 1,
+  "truth_status": {
+    "standard": "Standard",
+    "configurable": "Nastavitelné",
+    "needs validation": "Vyžaduje ověření",
+    "planned-or-not-available": "Plánované nebo nedostupné"
+  },
+  "commercial_state": {
+    "already_included": "Součást licence",
+    "additional_purchase": "Doplňkový nákup",
+    "scoped_service": "Služba podle rozsahu",
+    "unknown": "Neověřeno pro tohoto zákazníka"
+  },
+  "certainty": {
+    "confirmed": "Potvrzeno",
+    "working_assumption": "Pracovní předpoklad",
+    "unknown": "Nevíme"
+  },
+  "phase_key": {
+    "before": "Před událostí",
+    "arrival": "Příchod",
+    "during": "V průběhu",
+    "people": "Lidé",
+    "live_operations": "Provoz na místě",
+    "brand_partners": "Značka a partneři",
+    "after": "Po události",
+    "next_event": "Další ročník"
+  },
+  "kind": {
+    "book_review": "Naplánovat review",
+    "send_story": "Poslat Event Story",
+    "continue_with_expert": "Pokračovat s expertem",
+    "clarify_brief": "Doplnit brief",
+    "ask": "Zeptat se na Event Story",
+    "portfolio_review": "Portfolio review",
+    "security_review": "Security review"
+  },
+  "selection": {
+    "recommended": "Doporučeno",
+    "conditional": "Podmíněně",
+    "declined": "Odmítnuto zákazníkem",
+    "not_selected": "Nevybráno"
+  },
+  "answer_status": {
+    "unasked": "Nezeptali jsme se",
+    "answered_unknown": "Odpověď: nevím",
+    "deferred": "Odloženo"
+  }
+}

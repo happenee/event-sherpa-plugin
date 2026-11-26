@@ -1,0 +1,21 @@
+{
+  "edition": "skills+app",
+  "pack_version": "0.8.1",
+  "plugin": "happenee-mcp",
+  "prompt_version": "describe-v0.2.50",
+  "public_version": "1.0.0",
+  "qa_plugin_version": "0.54.43",
+  "skills": [
+    "event-sherpa",
+    "event-sherpa-app-designer",
+    "event-sherpa-communication-manager",
+    "event-sherpa-content-manager",
+    "event-sherpa-event-designer",
+    "event-sherpa-event-insights",
+    "event-sherpa-microsite-designer",
+    "event-sherpa-product-specialist",
+    "event-sherpa-registration-manager"
+  ],
+  "source_commit": "7ebaa01ba07ca69675a564ed6b848350151f566c",
+  "tier": "A"
+}
