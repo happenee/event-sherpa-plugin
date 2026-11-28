@@ -24,7 +24,8 @@ approval as the section "Rules every role keeps" in SKILL.md says.
   may go to `preview_event_creation` as `handoffs[]` with
   `arguments.module_types` from `locality`, `contact`, `sessions`,
   `speakers` (code names of the creation tool, not product terms). It
-  creates the features empty and unpublished; say so in `note`. One handoff
+  creates the features empty, not yet Published in the attendee app but
+  already shown in the microsite menu; say so in `note`. One handoff
   per event: when the microsite plan of the same story already hands these
   over, do not repeat it. The agenda itself goes from Compose through
   Content Manager using the server program contract, not from this plan, and `program-v1` writes no

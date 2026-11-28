@@ -109,5 +109,5 @@
   "name": "happenee",
   "repository": "https://github.com/happenee/event-sherpa-plugin",
   "skills": "./skills/",
-  "version": "1.0.3"
+  "version": "1.0.5"
 }

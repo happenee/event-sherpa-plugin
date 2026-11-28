@@ -19,6 +19,17 @@ The plugin carries eight Event Sherpa roles as skills:
 
 The skills contain no executable code. They are instructions, reference files and Happenee Help Center articles that your AI assistant reads.
 
+## Install in Claude Code
+
+In Claude Code, add the Happenee catalog and install the plugin:
+
+```
+/plugin marketplace add happenee/event-sherpa-plugin
+/plugin install happenee@happenee
+```
+
+Then run `/mcp`, sign in with your Happenee account and choose the events Claude Code may work with.
+
 ## What it connects to and where your data goes
 
 The plugin connects your assistant to the Happenee server at `https://admin2.happenee.com/mcp/event-insights`. You sign in with your own Happenee account (OAuth). The assistant then sees only the events your account can access and only within the permissions you grant.

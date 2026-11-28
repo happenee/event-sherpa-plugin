@@ -1161,7 +1161,7 @@
             "items": {
               "type": "string"
             },
-            "description": "instance_ids whose feature the handoff creates, empty and unpublished."
+            "description": "instance_ids whose feature the handoff creates, empty and already shown in the microsite menu."
           },
           "note": {
             "type": "string"

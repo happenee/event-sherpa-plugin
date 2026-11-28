@@ -1,0 +1,16 @@
+{
+  "metadata": {
+    "description": "Happenee Event Sherpa plugin for Claude Code."
+  },
+  "name": "happenee",
+  "owner": {
+    "name": "Happenee"
+  },
+  "plugins": [
+    {
+      "description": "Event Sherpa plans your events with you and sets them up in Happenee: events, agendas, registration forms, invitations, event microsites and event apps, readiness checks and results. It sees only events you allow. Publishing, opening registration, sending, scheduling and deleting wait for your approval of the preview.",
+      "name": "happenee",
+      "source": "./"
+    }
+  ]
+}
