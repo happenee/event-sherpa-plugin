@@ -85,6 +85,8 @@ and one stream; with parallel rooms, questions belong to sessions (KB 03.24).
 For a new event, `preview_event_creation` accepts `module_types` from
 `locality` (Venue), `contact` (Contact), `sessions` (Agenda) and `speakers`
 (Speakers). These are the tool's code names, not product terms. It creates
-those features empty and unpublished; the venue name is the only content it
-takes, from the event's basic facts. Nothing writes the intro text, tabs,
+those features empty; the venue name is the only content it takes, from
+the event's basic facts. They are not yet Published (Publikováno) in the
+attendee app, but they already show in the microsite menu so the organizer
+can check the microsite; never call them hidden. Nothing writes the intro text, tabs,
 display, app order, tiles, feature content, engagement or visibility.

@@ -297,7 +297,7 @@ these boundaries.
 
 ## Current server contract
 
-The common behavior in this loaded role has SHA-256 `4b178cd86335fad98ff2ef6e807a2c772871a87ea07942d21550710a810de860`.
+The common behavior in this loaded role has SHA-256 `1cdf5d31eff891431f769a106030f3b378cfad5d0c261f19edd2a09b50beb863`.
 Before using Happenee tools, read `get_event_sherpa_skill` with this role's
 skill_id, path `@adapter` and `known_common_sha256` set to that exact hash,
 when the tool schema supports it; otherwise omit the hash. This reads the
@@ -508,7 +508,10 @@ feature lists.
   and exhibitors are Hidden (Skryto) until Published (Publikováno); an
   e-mail campaign is Not scheduled (Nenaplánováno), Scheduled
   (Naplánováno) or Sent (Odesláno); a new event is hidden from lists with
-  registration closed and its features unpublished; a saved form or
+  registration closed, while the Venue and Agenda it creates already show
+  in its microsite menu so the organizer can check the microsite (agenda
+  blocks stay Hidden); never call those features hidden, also when the
+  card does; a saved form or
   setting leaves registration closed. Only your unsaved proposal in the
   chat is a draft ("návrh").
 - **Bullets, no tables.** Write overviews, previews, readiness results and

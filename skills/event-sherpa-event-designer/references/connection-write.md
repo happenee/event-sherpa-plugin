@@ -77,12 +77,17 @@ such a change. Every rule of SKILL.md holds here too.
   a speaker photo and your client can, generate it and send that generated
   file to the image tool as the file in the chat, then continue to the
   preview; never stop after generating and never ask them to save and
-  attach it first. If the tool refuses the file, say plainly that it was not
-  uploaded and why, and ask them to download the image and attach it; never
-  say it is in Happenee until a reading shows it there. Generate an image
-  in the organizer's own brand (logo, colours, typeface) when they gave it;
-  without it ask once for it or say that the image is neutral, never invent
-  a brand. Send the file itself, never its name, a link or a description of
+  attach it first. If the tool refuses the file, or your client cannot hand
+  it over, use `create_event_image_upload`: when your client can read and
+  send the file, upload it there; otherwise offer the `file_picker_url` of
+  that same operation, so the person picks the file once. Never ask them to
+  download the image and attach it again. After either way read the image
+  with `get_event_image` under the same operation and show the Happenee card
+  with the picture itself; a link to the full image is only an addition to
+  that card. Never say it is in Happenee until a reading shows it there.
+  Generate an image in the organizer's own brand (logo, colours, typeface)
+  when they gave it; without it ask once for it or say that the image is
+  neutral, never invent a brand. Send the file itself, never its name, a link or a description of
   it; a refusal of a wrong argument is your mistake, not a fault of
   Happenee.
 - **Fresh previews.** Prepare a preview right before asking for its
